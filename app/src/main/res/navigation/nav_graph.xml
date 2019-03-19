@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/searchFragment">
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.movs_project.View.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_gameInfoFragment"
+            app:destination="@id/gameInfoFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_summonerFragment"
+            app:destination="@id/summonerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/summonerFragment"
+        android:name="com.example.movs_project.View.SummonerFragment"
+        android:label="fragment_summoner"
+        tools:layout="@layout/fragment_summoner" />
+    <fragment
+        android:id="@+id/playerInfoFragment"
+        android:name="com.example.movs_project.View.PlayerInfoFragment"
+        android:label="fragment_player_info"
+        tools:layout="@layout/fragment_player_info" />
+    <fragment
+        android:id="@+id/gameInfoFragment"
+        android:name="com.example.movs_project.View.GameInfoFragment"
+        android:label="fragment_game_info"
+        tools:layout="@layout/fragment_game_info" >
+        <action
+            android:id="@+id/action_gameInfoFragment_to_playerInfoFragment"
+            app:destination="@id/playerInfoFragment" />
+    </fragment>
+</navigation>
