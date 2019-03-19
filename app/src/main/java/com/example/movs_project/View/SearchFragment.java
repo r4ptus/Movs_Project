@@ -9,9 +9,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.movs_project.R;
 
@@ -75,8 +79,29 @@ public class SearchFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
-        view.findViewById(R.id.searchButton).setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_searchFragment_to_gameInfoFragment,null));
+    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState){
+
+        Button button = view.findViewById(R.id.searchButton);
+        final EditText text = view.findViewById(R.id.searchText);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!TextUtils.isEmpty(text.getText().toString())){
+                    Bundle bundle = new Bundle();
+                    bundle.putString("SummonerName",text.getText().toString());
+
+                    Navigation.findNavController(view).navigate(R.id.action_searchFragment_to_gameInfoFragment,bundle);
+                }
+                else{
+                    Toast.makeText(getContext(),"pls enter a Summonername",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        //view.findViewById(R.id.searchButton).setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_searchFragment_to_gameInfoFragment,null));
+
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
