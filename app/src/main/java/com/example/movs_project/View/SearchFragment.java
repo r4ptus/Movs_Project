@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
 import android.text.TextUtils;
@@ -17,7 +19,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.movs_project.Model.Maps;
 import com.example.movs_project.R;
+import com.example.movs_project.ViewModel.SearchFragmentVM;
 
 
 /**
@@ -39,6 +43,7 @@ public class SearchFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private SearchFragmentVM searchFragmentVM;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -80,6 +85,14 @@ public class SearchFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState){
+        super.onViewCreated(view, savedInstanceState);
+
+        Maps m = new Maps();
+
+        searchFragmentVM = ViewModelProviders.of(requireActivity()).get(SearchFragmentVM.class);
+
+        searchFragmentVM.getChampions();
+        searchFragmentVM.getMasteries();
 
         Button button = view.findViewById(R.id.searchButton);
         final EditText text = view.findViewById(R.id.searchText);
@@ -88,10 +101,26 @@ public class SearchFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(!TextUtils.isEmpty(text.getText().toString())){
-                    Bundle bundle = new Bundle();
-                    bundle.putString("SummonerName",text.getText().toString());
+                    String tmp = text.getText().toString();
+                    searchFragmentVM.getSummonerApiData(tmp);
 
-                    Navigation.findNavController(view).navigate(R.id.action_searchFragment_to_gameInfoFragment,bundle);
+                    final Bundle bundle = new Bundle();
+                    bundle.putSerializable("teamB",searchFragmentVM.teamB);
+                    bundle.putSerializable("teamR",searchFragmentVM.teamR);
+
+                    searchFragmentVM.isLiveMatch.observe(getViewLifecycleOwner(), new Observer<SearchFragmentVM.IsLiveMatch>() {
+                        @Override
+                        public void onChanged(SearchFragmentVM.IsLiveMatch isLiveMatch) {
+                            switch (isLiveMatch){
+                                case YES:
+                                    Navigation.findNavController(view).navigate(R.id.action_searchFragment_to_gameInfoFragment,bundle);
+                                    break;
+                                case NO:
+                                    Navigation.findNavController(view).navigate(R.id.action_searchFragment_to_summonerFragment,null);
+                                    break;
+                            }
+                        }
+                    });
                 }
                 else{
                     Toast.makeText(getContext(),"pls enter a Summonername",Toast.LENGTH_SHORT).show();

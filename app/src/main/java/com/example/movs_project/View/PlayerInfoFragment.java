@@ -105,53 +105,53 @@ public class PlayerInfoFragment extends Fragment {
         if(!TextUtils.isEmpty(player.getWlRatio())){
             wlRatio.setText(player.getWlRatio());
         }
-        if(!TextUtils.isEmpty(player.getChampionPoints())){
-            championPoints.setText(player.getChampionPoints());
+        if(!TextUtils.isEmpty(player.getChampionPoints()+"")){
+            championPoints.setText(player.getChampionPoints()+"");
         }
 
-        if(!TextUtils.isEmpty(player.getPlayerIcon())){
+        if(!TextUtils.isEmpty(player.getPlayerIcon()+"")){
             Picasso.get().load(player.getPlayerIcon())
                     .error(R.drawable.ic_launcher_background)
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .into(playerIcon);
         }
-        if(!TextUtils.isEmpty(player.getPrimaryMastery())){
+        if(!TextUtils.isEmpty(player.getPrimaryMastery()+"")){
             Picasso.get().load(player.getPrimaryMastery())
                     .error(R.drawable.ic_launcher_background)
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .into(mainMastery);
         }
-        if(!TextUtils.isEmpty(player.getPrimaryMastery1())){
+        if(!TextUtils.isEmpty(player.getPrimaryMastery1()+"")){
             Picasso.get().load(player.getPrimaryMastery1())
                     .error(R.drawable.ic_launcher_background)
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .into(mainMastery1);
         }
-        if(!TextUtils.isEmpty(player.getPrimaryMastery2())){
+        if(!TextUtils.isEmpty(player.getPrimaryMastery2()+"")){
             Picasso.get().load(player.getPrimaryMastery2())
                     .error(R.drawable.ic_launcher_background)
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .into(mainMastery2);
         }
-        if(!TextUtils.isEmpty(player.getPrimaryMastery2())){
+        if(!TextUtils.isEmpty(player.getPrimaryMastery2()+"")){
             Picasso.get().load(player.getPrimaryMastery2())
                     .error(R.drawable.ic_launcher_background)
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .into(mainMastery3);
         }
-        if(!TextUtils.isEmpty(player.getSubMastery())){
+        if(!TextUtils.isEmpty(player.getSubMastery()+"")){
             Picasso.get().load(player.getSubMastery())
                     .error(R.drawable.ic_launcher_background)
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .into(subMastery);
         }
-        if(!TextUtils.isEmpty(player.getSubMastery1())){
+        if(!TextUtils.isEmpty(player.getSubMastery1()+"")){
             Picasso.get().load(player.getSubMastery1())
                     .error(R.drawable.ic_launcher_background)
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .into(subMastery1);
         }
-        if(!TextUtils.isEmpty(player.getSubMastery2())){
+        if(!TextUtils.isEmpty(player.getSubMastery2()+"")){
             Picasso.get().load(player.getSubMastery2())
                     .error(R.drawable.ic_launcher_background)
                     .placeholder(R.drawable.ic_launcher_foreground)

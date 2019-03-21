@@ -1,5 +1,8 @@
 package com.example.movs_project.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 
 public class Player implements Serializable {
@@ -7,18 +10,22 @@ public class Player implements Serializable {
     private String summonerName;
     private String rank;
     private String wlRatio;
-    private String championPoints;
-    private String playerIcon;
-    private String championIcon;
-    private String spell1;
-    private String spell2;
-    private String primaryMastery;
-    private String primaryMastery1;
-    private String primaryMastery2;
-    private String primaryMastery3;
-    private String subMastery;
-    private String subMastery1;
-    private String subMastery2;
+    private Long championPoints;
+    private int playerIcon;
+    private int championIcon;
+    private int spell1;
+    private int spell2;
+    private int primaryMastery;
+    private int primaryMastery1;
+    private int primaryMastery2;
+    private int primaryMastery3;
+    private int primaryMastery4;
+    private int perk1;
+    private int perk2;
+    private int perk3;
+    private int subMastery;
+    private int subMastery1;
+    private int subMastery2;
 
     public String getSummonerName() {
         return summonerName;
@@ -28,51 +35,51 @@ public class Player implements Serializable {
         this.summonerName = summonerName;
     }
 
-    public String getPlayerIcon() {
+    public int getPlayerIcon() {
         return playerIcon;
     }
 
-    public void setPlayerIcon(String playerIcon) {
+    public void setPlayerIcon(int playerIcon) {
         this.playerIcon = playerIcon;
     }
 
-    public String getChampionIcon() {
+    public int getChampionIcon() {
         return championIcon;
     }
 
-    public void setChampionIcon(String championIcon) {
+    public void setChampionIcon(int championIcon) {
         this.championIcon = championIcon;
     }
 
-    public String getSpell1() {
+    public int getSpell1() {
         return spell1;
     }
 
-    public void setSpell1(String spell1) {
+    public void setSpell1(int spell1) {
         this.spell1 = spell1;
     }
 
-    public String getSpell2() {
+    public int getSpell2() {
         return spell2;
     }
 
-    public void setSpell2(String spell2) {
+    public void setSpell2(int spell2) {
         this.spell2 = spell2;
     }
 
-    public String getPrimaryMastery() {
+    public int getPrimaryMastery() {
         return primaryMastery;
     }
 
-    public void setPrimaryMastery(String primaryMastery) {
+    public void setPrimaryMastery(int primaryMastery) {
         this.primaryMastery = primaryMastery;
     }
 
-    public String getSubMastery() {
+    public int getSubMastery() {
         return subMastery;
     }
 
-    public void setSubMastery(String subMastery) {
+    public void setSubMastery(int subMastery) {
         this.subMastery = subMastery;
     }
 
@@ -92,62 +99,106 @@ public class Player implements Serializable {
         this.wlRatio = wlRatio;
     }
 
-    public String getChampionPoints() {
+    public Long getChampionPoints() {
         return championPoints;
     }
 
-    public void setChampionPoints(String championPoints) {
+    public void setChampionPoints(Long championPoints) {
         this.championPoints = championPoints;
     }
 
-    public String getPrimaryMastery1() {
+    public int getPrimaryMastery1() {
         return primaryMastery1;
     }
 
-    public void setPrimaryMastery1(String primaryMastery1) {
+    public void setPrimaryMastery1(int primaryMastery1) {
         this.primaryMastery1 = primaryMastery1;
     }
 
-    public String getPrimaryMastery2() {
+    public int getPrimaryMastery2() {
         return primaryMastery2;
     }
 
-    public void setPrimaryMastery2(String primaryMastery2) {
+    public void setPrimaryMastery2(int primaryMastery2) {
         this.primaryMastery2 = primaryMastery2;
     }
 
-    public String getPrimaryMastery3() {
+    public int getPrimaryMastery3() {
         return primaryMastery3;
     }
 
-    public void setPrimaryMastery3(String primaryMastery3) {
+    public void setPrimaryMastery3(int primaryMastery3) {
         this.primaryMastery3 = primaryMastery3;
     }
 
-    public String getSubMastery1() {
+    public int getSubMastery1() {
         return subMastery1;
     }
 
-    public void setSubMastery1(String subMastery1) {
+    public void setSubMastery1(int subMastery1) {
         this.subMastery1 = subMastery1;
     }
 
-    public String getSubMastery2() {
+    public int getSubMastery2() {
         return subMastery2;
     }
 
-    public void setSubMastery2(String subMastery2) {
+    public void setSubMastery2(int subMastery2) {
         this.subMastery2 = subMastery2;
     }
 
-    public Player(String summonerName, String playerIcon, String championIcon, String spell1, String spell2, String primaryMastery, String subMastery) {
+    public int getPrimaryMastery4() {
+        return primaryMastery4;
+    }
+
+    public void setPrimaryMastery4(int primaryMastery4) {
+        this.primaryMastery4 = primaryMastery4;
+    }
+
+    public int getPerk1() {
+        return perk1;
+    }
+
+    public void setPerk1(int perk1) {
+        this.perk1 = perk1;
+    }
+
+    public int getPerk2() {
+        return perk2;
+    }
+
+    public void setPerk2(int perk2) {
+        this.perk2 = perk2;
+    }
+
+    public int getPerk3() {
+        return perk3;
+    }
+
+    public void setPerk3(int perk3) {
+        this.perk3 = perk3;
+    }
+
+    public Player(String summonerName, String rank, String wlRatio, Long championPoints, int playerIcon, int championIcon, int spell1, int spell2, int primaryMastery, int primaryMastery1, int primaryMastery2, int primaryMastery3, int primaryMastery4, int perk1, int perk2, int perk3, int subMastery, int subMastery1, int subMastery2) {
         this.summonerName = summonerName;
+        this.rank = rank;
+        this.wlRatio = wlRatio;
+        this.championPoints = championPoints;
         this.playerIcon = playerIcon;
         this.championIcon = championIcon;
         this.spell1 = spell1;
         this.spell2 = spell2;
         this.primaryMastery = primaryMastery;
+        this.primaryMastery1 = primaryMastery1;
+        this.primaryMastery2 = primaryMastery2;
+        this.primaryMastery3 = primaryMastery3;
+        this.primaryMastery4 = primaryMastery4;
+        this.perk1 = perk1;
+        this.perk2 = perk2;
+        this.perk3 = perk3;
         this.subMastery = subMastery;
+        this.subMastery1 = subMastery1;
+        this.subMastery2 = subMastery2;
     }
 
     @Override
@@ -170,4 +221,5 @@ public class Player implements Serializable {
                 ", subMastery2='" + subMastery2 + '\'' +
                 '}';
     }
+
 }

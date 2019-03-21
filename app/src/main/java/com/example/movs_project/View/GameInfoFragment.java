@@ -7,7 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,13 +16,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.movs_project.Adapter.BlueTeamAdapter;
-import com.example.movs_project.Adapter.RedTeamAdapter;
+import com.example.movs_project.Adapter.TeamAdapter;
 import com.example.movs_project.Model.Player;
 import com.example.movs_project.R;
+import com.example.movs_project.ViewModel.GameInfoFragmentVM;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 
@@ -45,6 +44,8 @@ public class GameInfoFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private GameInfoFragmentVM gameInfoFragmentVM;
 
     public GameInfoFragment() {
         // Required empty public constructor
@@ -75,6 +76,9 @@ public class GameInfoFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
+
     }
 
     @Override
@@ -86,48 +90,18 @@ public class GameInfoFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
+        super.onViewCreated(view, savedInstanceState);
 
-        final ArrayList<Player> bList = new ArrayList<>();
+        Bundle bundle = this.getArguments();
+        final ArrayList<Player> teamB = (ArrayList<Player>) bundle.getSerializable("teamB");
+        final ArrayList<Player> teamR = (ArrayList<Player>) bundle.getSerializable("teamR");
 
-        bList.add(new Player("player1",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png"));
-        bList.add(new Player("player2",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png"));
-        bList.add(new Player("player3",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png"));
-        bList.add(new Player("player4",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png"));
-        bList.add(new Player("player5",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png"));
+        gameInfoFragmentVM = ViewModelProviders.of(this).get(GameInfoFragmentVM.class);
+
 
         RecyclerView recyclerViewBlue = view.findViewById(R.id.teamBlue);
 
-        final BlueTeamAdapter blueTeamAdapter = new BlueTeamAdapter(bList);
+        final TeamAdapter blueTeamAdapter = new TeamAdapter(teamB);
 
         RecyclerView.LayoutManager layoutManagerBlue = new LinearLayoutManager(getContext());
 
@@ -143,7 +117,7 @@ public class GameInfoFragment extends Fragment {
                 int position_dragged = viewHolder.getAdapterPosition();
                 int position_target = target.getAdapterPosition();
 
-                Collections.swap(bList,position_dragged,position_target);
+                Collections.swap(teamB,position_dragged,position_target);
 
                 blueTeamAdapter.notifyItemMoved(position_dragged,position_target);
 
@@ -159,47 +133,9 @@ public class GameInfoFragment extends Fragment {
 
         /**---------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-        final ArrayList<Player> rList = new ArrayList<>();
-
-        rList.add(new Player("player1",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png"));
-        rList.add(new Player("TheNoob2010",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png"));
-        rList.add(new Player("player3",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png"));
-        rList.add(new Player("player4",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png"));
-        rList.add(new Player("player5",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png",
-                "https://www.mobafire.com/images/avatars/thresh-classic.png"));
-
         RecyclerView recyclerViewRed = view.findViewById(R.id.teamRed);
 
-        final RedTeamAdapter redTeamAdapter = new RedTeamAdapter(rList);
+        final TeamAdapter redTeamAdapter = new TeamAdapter(teamR);
 
         RecyclerView.LayoutManager layoutManagerRed = new LinearLayoutManager(getContext());
 
@@ -214,7 +150,7 @@ public class GameInfoFragment extends Fragment {
                 int position_dragged = viewHolder.getAdapterPosition();
                 int position_target = target.getAdapterPosition();
 
-                Collections.swap(rList,position_dragged,position_target);
+                Collections.swap(teamR,position_dragged,position_target);
 
                 redTeamAdapter.notifyItemMoved(position_dragged,position_target);
 

@@ -1,5 +1,6 @@
 package com.example.movs_project.Adapter;
 
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.movs_project.Model.Maps;
 import com.example.movs_project.Model.Player;
 import com.example.movs_project.R;
 import com.squareup.picasso.Picasso;
@@ -18,67 +20,73 @@ import androidx.cardview.widget.CardView;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class RedTeamAdapter extends RecyclerView.Adapter<RedTeamAdapter.PlayerViewHolder> {
+
+public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.PlayerViewHolder> {
 
     private ArrayList<Player> dataList;
 
-    public RedTeamAdapter(ArrayList<Player> dataList) {
+    public TeamAdapter(ArrayList<Player> dataList) {
         this.dataList = dataList;
     }
 
     @NonNull
     @Override
-    public RedTeamAdapter.PlayerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PlayerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.player_card,parent,false);
 
-        return new RedTeamAdapter.PlayerViewHolder(view);
+        return new PlayerViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RedTeamAdapter.PlayerViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PlayerViewHolder holder, int position) {
         holder.summonerName.setText(dataList.get(position).getSummonerName());
 
-        if(!TextUtils.isEmpty(dataList.get(position).getPlayerIcon())){
-            Picasso.get().load(dataList.get(position).getPlayerIcon())
+        if(!TextUtils.isEmpty(dataList.get(position).getPlayerIcon()+"")){
+            Picasso.get().load("http://ddragon.leagueoflegends.com/cdn/9.6.1/img/profileicon/" + dataList.get(position).getPlayerIcon() + ".png")
                     .error(R.drawable.ic_launcher_background)
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .into(holder.playerIcon);
         }
-        if(!TextUtils.isEmpty(dataList.get(position).getChampionIcon())){
-            Picasso.get().load(dataList.get(position).getChampionIcon())
+        if(!TextUtils.isEmpty(dataList.get(position).getChampionIcon()+"")){
+            Picasso.get().load(Maps.CHAMPION_URL + Maps.champions.get(dataList.get(position).getChampionIcon()))
                     .error(R.drawable.ic_launcher_background)
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .into(holder.championIcon);
         }
-        if(!TextUtils.isEmpty(dataList.get(position).getSpell1())){
-            Picasso.get().load(dataList.get(position).getSpell1())
+        if(!TextUtils.isEmpty(dataList.get(position).getSpell1()+"")){
+            Picasso.get().load(Maps.SPELLS_URL + Maps.spells.get(dataList.get(position).getSpell1()))
                     .error(R.drawable.ic_launcher_background)
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .into(holder.spellOne);
         }
-        if(!TextUtils.isEmpty(dataList.get(position).getSpell2())){
-            Picasso.get().load(dataList.get(position).getSpell2())
+        if(!TextUtils.isEmpty(dataList.get(position).getSpell2()+"")){
+            Picasso.get().load(Maps.SPELLS_URL + Maps.spells.get(dataList.get(position).getSpell2()))
                     .error(R.drawable.ic_launcher_background)
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .into(holder.spellTwo);
         }
-        if(!TextUtils.isEmpty(dataList.get(position).getPrimaryMastery())){
-            Picasso.get().load(dataList.get(position).getPrimaryMastery())
+        if(!TextUtils.isEmpty(dataList.get(position).getPrimaryMastery()+"")){
+            Picasso.get().load(Maps.MASTERY_URL + Maps.masteries.get(dataList.get(position).getPrimaryMastery()))
                     .error(R.drawable.ic_launcher_background)
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .into(holder.mainMastery);
         }
-        if(!TextUtils.isEmpty(dataList.get(position).getSubMastery())){
-            Picasso.get().load(dataList.get(position).getSubMastery())
+        if(!TextUtils.isEmpty(dataList.get(position).getSubMastery()+"")){
+            Picasso.get().load(Maps.MASTERY_URL + Maps.masteries.get(dataList.get(position).getSubMastery()))
                     .error(R.drawable.ic_launcher_background)
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .into(holder.subMastery);
         }
 
-        holder.cardView.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_gameInfoFragment_to_playerInfoFragment,null));
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("Player",dataList.get(position));
+
+        holder.cardView.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_gameInfoFragment_to_playerInfoFragment,bundle));
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -104,5 +112,4 @@ public class RedTeamAdapter extends RecyclerView.Adapter<RedTeamAdapter.PlayerVi
             summonerName = itemView.findViewById(R.id.summonerName);
         }
     }
-
 }
