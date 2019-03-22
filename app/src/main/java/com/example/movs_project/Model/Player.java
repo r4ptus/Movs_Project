@@ -7,6 +7,8 @@ import java.io.Serializable;
 
 public class Player implements Serializable {
 
+
+    private String id;
     private String summonerName;
     private String rank;
     private String wlRatio;
@@ -26,6 +28,9 @@ public class Player implements Serializable {
     private int subMastery;
     private int subMastery1;
     private int subMastery2;
+    private int queueType;
+
+    public String getId(){return id;}
 
     public String getSummonerName() {
         return summonerName;
@@ -179,7 +184,17 @@ public class Player implements Serializable {
         this.perk3 = perk3;
     }
 
-    public Player(String summonerName, String rank, String wlRatio, Long championPoints, int playerIcon, int championIcon, int spell1, int spell2, int primaryMastery, int primaryMastery1, int primaryMastery2, int primaryMastery3, int primaryMastery4, int perk1, int perk2, int perk3, int subMastery, int subMastery1, int subMastery2) {
+    public int getQueueType(){return queueType;}
+
+    public Player(String id,String name,int playerIcon)
+    {
+        this.id = id;
+        summonerName = name;
+        this.playerIcon = playerIcon;
+    }
+
+    public Player(String id,String summonerName, String rank, String wlRatio, Long championPoints, int playerIcon, int championIcon, int spell1, int spell2, int primaryMastery, int primaryMastery1, int primaryMastery2, int primaryMastery3, int primaryMastery4, int perk1, int perk2, int perk3, int subMastery, int subMastery1, int subMastery2,int queueType) {
+        this.id = id;
         this.summonerName = summonerName;
         this.rank = rank;
         this.wlRatio = wlRatio;
@@ -199,27 +214,32 @@ public class Player implements Serializable {
         this.subMastery = subMastery;
         this.subMastery1 = subMastery1;
         this.subMastery2 = subMastery2;
+        this.queueType = queueType;
     }
 
     @Override
     public String toString() {
         return "Player{" +
-                "summonerName='" + summonerName + '\'' +
+                "id=" + id +
+                ", summonerName='" + summonerName + '\'' +
                 ", rank='" + rank + '\'' +
                 ", wlRatio='" + wlRatio + '\'' +
-                ", championPoints='" + championPoints + '\'' +
-                ", playerIcon='" + playerIcon + '\'' +
-                ", championIcon='" + championIcon + '\'' +
-                ", spell1='" + spell1 + '\'' +
-                ", spell2='" + spell2 + '\'' +
-                ", primaryMastery='" + primaryMastery + '\'' +
-                ", primaryMastery1='" + primaryMastery1 + '\'' +
-                ", primaryMastery2='" + primaryMastery2 + '\'' +
-                ", primaryMastery3='" + primaryMastery3 + '\'' +
-                ", subMastery='" + subMastery + '\'' +
-                ", subMastery1='" + subMastery1 + '\'' +
-                ", subMastery2='" + subMastery2 + '\'' +
+                ", championPoints=" + championPoints +
+                ", playerIcon=" + playerIcon +
+                ", championIcon=" + championIcon +
+                ", spell1=" + spell1 +
+                ", spell2=" + spell2 +
+                ", primaryMastery=" + primaryMastery +
+                ", primaryMastery1=" + primaryMastery1 +
+                ", primaryMastery2=" + primaryMastery2 +
+                ", primaryMastery3=" + primaryMastery3 +
+                ", primaryMastery4=" + primaryMastery4 +
+                ", perk1=" + perk1 +
+                ", perk2=" + perk2 +
+                ", perk3=" + perk3 +
+                ", subMastery=" + subMastery +
+                ", subMastery1=" + subMastery1 +
+                ", subMastery2=" + subMastery2 +
                 '}';
     }
-
 }

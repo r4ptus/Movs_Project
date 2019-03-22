@@ -27,7 +27,7 @@ import retrofit2.Response;
 
 public class SearchFragmentVM extends ViewModel {
 
-    private String id;
+    SummonerApiData summonerApiData;
 
     final static String TAG = SearchFragmentVM.class.getSimpleName();
 
@@ -37,6 +37,8 @@ public class SearchFragmentVM extends ViewModel {
     }
 
     public final MutableLiveData<IsLiveMatch> isLiveMatch = new MutableLiveData<>();
+
+    public Player player;
 
     public ArrayList<Player> teamB = new ArrayList<>();
     public ArrayList<Player> teamR = new ArrayList<>();
@@ -50,8 +52,7 @@ public class SearchFragmentVM extends ViewModel {
             @Override
             public void onResponse(Call<SummonerApiData> call, Response<SummonerApiData> response) {
                 if(response.isSuccessful()){
-                    SummonerApiData data = response.body();
-                    id = data.id;
+                    summonerApiData = response.body();
                     Log.d(TAG,"start Spectator");
                     getSpectator();
                 }
@@ -67,11 +68,11 @@ public class SearchFragmentVM extends ViewModel {
 
     private void getSpectator(){
         //GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-        Call<SpectatorApiData> call = service.getSpectator(id);
+        Call<SpectatorApiData> call = service.getSpectator(summonerApiData.id);
         call.enqueue(new Callback<SpectatorApiData>() {
             @Override
             public void onResponse(Call<SpectatorApiData> call, Response<SpectatorApiData> response) {
-                Log.d(TAG,response.body().toString());
+
                 if(response.isSuccessful()){
 
                     Log.d(TAG,"initStart");
@@ -82,6 +83,7 @@ public class SearchFragmentVM extends ViewModel {
                     Log.d(TAG,"Yes is Livematch");
                 }
                 else{
+                    player = new Player(summonerApiData.id,summonerApiData.name,summonerApiData.profileIconId);
                     isLiveMatch.setValue(IsLiveMatch.NO);
                     Log.d(TAG,"No Livematch");
                 }
@@ -99,11 +101,11 @@ public class SearchFragmentVM extends ViewModel {
 
         for (Participant participant : data.participants){
 
-            Player player = new Player(participant.summonerName,"","",0l,
+            Player player = new Player(participant.summonerId,participant.summonerName,"","",0l,
                     participant.profileIconId,participant.championId,participant.spell1Id,participant.spell2Id,
                     participant.perks.perkStyle,participant.perks.perkIds.get(0),participant.perks.perkIds.get(1),participant.perks.perkIds.get(2),participant.perks.perkIds.get(3),
                     participant.perks.perkIds.get(6),participant.perks.perkIds.get(7),participant.perks.perkIds.get(8),
-                    participant.perks.perkSubStyle,participant.perks.perkIds.get(4),participant.perks.perkIds.get(5));
+                    participant.perks.perkSubStyle,participant.perks.perkIds.get(4),participant.perks.perkIds.get(5),data.gameQueueConfigId);
             Log.d(TAG,"player initialised");
             if(participant.teamId == 100){
                 teamB.add(player);

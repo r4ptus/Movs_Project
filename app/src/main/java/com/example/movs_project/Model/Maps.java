@@ -1,12 +1,8 @@
 package com.example.movs_project.Model;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import com.example.movs_project.R;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import java.util.HashMap;
 
 public class Maps {
 
@@ -14,7 +10,8 @@ public class Maps {
     public static HashMap<Integer,String> spells = new HashMap<>() ;
     public static HashMap<Integer,String> champions = new HashMap<>() ;
     public static HashMap<Integer,String> masteries = new HashMap<>();
-    public static String PERKS_URL ="http://ddragon.leagueoflegends.com/cdn/img/perk-images/StatMods/StatMods/";
+    public static HashMap<String,Integer> tiers = new HashMap<>();
+    public static String PERKS_URL ="http://ddragon.leagueoflegends.com/cdn/img/perk-images/StatMods/";
     public static String SPELLS_URL = "http://ddragon.leagueoflegends.com/cdn/9.6.1/img/spell/";
     public static String CHAMPION_URL = "http://ddragon.leagueoflegends.com/cdn/9.6.1/img/champion/";
     public static String MASTERY_URL = "http://ddragon.leagueoflegends.com/cdn/img/";
@@ -44,6 +41,18 @@ public class Maps {
         perks.put(5001,"StatModsHealthScalingIcon.png");
         perks.put(5007,"StatModsCDRScalingIcon.png");
         perks.put(5005,"StatModsAttackSpeedIcon.png");
+
+        //tiers
+        tiers.put("IRON", R.drawable.emblem_iron);
+        tiers.put("BRONZE", R.drawable.emblem_bronze);
+        tiers.put("SILVER", R.drawable.emblem_silver);
+        tiers.put("GOLD", R.drawable.emblem_gold);
+        tiers.put("PLATINUM", R.drawable.emblem_platinum);
+        tiers.put("DIAMOND", R.drawable.emblem_diamond);
+        tiers.put("MASTER", R.drawable.emblem_master);
+        tiers.put("GRANDMASTER", R.drawable.emblem_grandmaster);
+        tiers.put("CHALLENGER",R.drawable.emblem_challenger);
+
 
     }
 

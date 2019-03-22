@@ -3,6 +3,7 @@ package com.example.movs_project.Model;
 import com.example.movs_project.Model.ChampionMasteryApi.ChampionMasteryApiData;
 import com.example.movs_project.Model.ChampionScoreApi.ChampionMasteryScoreApiData;
 import com.example.movs_project.Model.ChampionsApi.Champions;
+import com.example.movs_project.Model.LeagueApi.LeagueApiData;
 import com.example.movs_project.Model.MasteryApi.MasteriesApiData;
 import com.example.movs_project.Model.SpectatorApi.SpectatorApiData;
 import com.example.movs_project.Model.SummonerApi.SummonerApiData;
@@ -29,7 +30,7 @@ public interface GetDataService {
     Call<SpectatorApiData> getSpectator(@Path("encryptedSummonerId") String id);
 
     @GET("lol/league/v4/positions/by-summoner/{encryptedSummonerId}")
-    Call<SpectatorApiData> getLeague(@Path("encryptedSummonerId") String id);
+    Call<List<LeagueApiData>> getLeague(@Path("encryptedSummonerId") String id);
 
     @GET()
     Call<Champions> getChampions(@Url String s);

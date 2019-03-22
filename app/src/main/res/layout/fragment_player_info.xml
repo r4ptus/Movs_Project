@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
@@ -36,28 +36,40 @@
                 android:id="@+id/summonerName_PLayerInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Name"
+                card_view:autoSizeMaxTextSize="100dp"
+                card_view:autoSizeMinTextSize="12dp"
+                card_view:autoSizeStepGranularity="2dp"
+                card_view:autoSizeTextType="uniform"
                 android:textAlignment="center" />
 
             <TextView
                 android:id="@+id/rank_PlaerInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Gold 3"
+                card_view:autoSizeMaxTextSize="100dp"
+                card_view:autoSizeMinTextSize="12dp"
+                card_view:autoSizeStepGranularity="2dp"
+                card_view:autoSizeTextType="uniform"
                 android:textAlignment="center" />
 
             <TextView
                 android:id="@+id/winLose_PlayerInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="W: 63  L: 40"
+                card_view:autoSizeMaxTextSize="100dp"
+                card_view:autoSizeMinTextSize="12dp"
+                card_view:autoSizeStepGranularity="2dp"
+                card_view:autoSizeTextType="uniform"
                 android:textAlignment="center" />
 
             <TextView
                 android:id="@+id/championPoints_PlayerInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="30000"
+                card_view:autoSizeMaxTextSize="100dp"
+                card_view:autoSizeMinTextSize="12dp"
+                card_view:autoSizeStepGranularity="2dp"
+                card_view:autoSizeTextType="uniform"
                 android:textAlignment="center" />
 
         </LinearLayout>
@@ -74,7 +86,7 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
             android:weightSum="5">
@@ -83,55 +95,90 @@
                 android:id="@+id/mainMastery_PlayerInfo"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                tools:src="@tools:sample/avatars"
-                android:layout_weight="2"/>
+                android:layout_marginBottom="5dp"
+                android:layout_weight="2"
+                tools:src="@tools:sample/avatars" />
+
             <ImageView
                 android:id="@+id/mainMastery1_PlayerInfo"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                tools:src="@tools:sample/avatars"
-                android:layout_weight="1"/>
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                tools:src="@tools:sample/avatars" />
+
             <ImageView
                 android:id="@+id/mainMastery2_PlayerInfo"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                tools:src="@tools:sample/avatars"
-                android:layout_weight="1"/>
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                tools:src="@tools:sample/avatars" />
+
             <ImageView
                 android:id="@+id/mainMastery3_PlayerInfo"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                tools:src="@tools:sample/avatars"
-                android:layout_weight="1"/>
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                tools:src="@tools:sample/avatars" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
             android:weightSum="4">
 
             <ImageView
-                android:id="@+id/subMastery_PlayerInfo"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                tools:src="@tools:sample/avatars"
-                android:layout_weight="2"/>
-            <ImageView
                 android:id="@+id/subMastery1_PlayerInfo"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                tools:src="@tools:sample/avatars"
-                android:layout_weight="1"/>
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                tools:src="@tools:sample/avatars" />
+
             <ImageView
                 android:id="@+id/subMastery2_PlayerInfo"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                tools:src="@tools:sample/avatars"
-                android:layout_weight="1"/>
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                tools:src="@tools:sample/avatars" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <ImageView
+                    android:id="@+id/perk1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true" />
+
+                <ImageView
+                    android:id="@+id/perk2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true" />
+
+                <ImageView
+                    android:id="@+id/perk3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-
 </LinearLayout>

@@ -7,6 +7,6 @@ public class ChampionMasteryScoreApiData {
 
     @SerializedName("championScore")
     @Expose
-    private int revisionDate;
+    public int championScore;
 
 }

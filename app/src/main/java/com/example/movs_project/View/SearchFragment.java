@@ -108,17 +108,16 @@ public class SearchFragment extends Fragment {
                     bundle.putSerializable("teamB",searchFragmentVM.teamB);
                     bundle.putSerializable("teamR",searchFragmentVM.teamR);
 
-                    searchFragmentVM.isLiveMatch.observe(getViewLifecycleOwner(), new Observer<SearchFragmentVM.IsLiveMatch>() {
-                        @Override
-                        public void onChanged(SearchFragmentVM.IsLiveMatch isLiveMatch) {
-                            switch (isLiveMatch){
-                                case YES:
-                                    Navigation.findNavController(view).navigate(R.id.action_searchFragment_to_gameInfoFragment,bundle);
-                                    break;
-                                case NO:
-                                    Navigation.findNavController(view).navigate(R.id.action_searchFragment_to_summonerFragment,null);
-                                    break;
-                            }
+
+                    searchFragmentVM.isLiveMatch.observe(getViewLifecycleOwner(), isLiveMatch -> {
+                        switch (isLiveMatch){
+                            case YES:
+                                Navigation.findNavController(view).navigate(R.id.action_searchFragment_to_gameInfoFragment,bundle);
+                                break;
+                            case NO:
+                                bundle.putSerializable("player",searchFragmentVM.player);
+                                Navigation.findNavController(view).navigate(R.id.action_searchFragment_to_summonerFragment,bundle);
+                                break;
                         }
                     });
                 }

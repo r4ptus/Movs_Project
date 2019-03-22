@@ -7,14 +7,21 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.movs_project.Model.LeagueApi.LeagueApiData;
+import com.example.movs_project.Model.Player;
 import com.example.movs_project.R;
+import com.example.movs_project.ViewModel.SummonerFragmentVM;
+import com.squareup.picasso.Picasso;
 
 
 /**
@@ -36,6 +43,8 @@ public class SummonerFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    SummonerFragmentVM summonerFragmentVM;
 
     public SummonerFragment() {
         // Required empty public constructor
@@ -78,16 +87,70 @@ public class SummonerFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState)
     {
+        super.onViewCreated(view, savedInstanceState);
+
+        Player player = (Player) getArguments().getSerializable("player");
+
+        summonerFragmentVM = ViewModelProviders.of(requireActivity()).get(SummonerFragmentVM.class);
+
+        summonerFragmentVM.setPlayer(player);
+
+        summonerFragmentVM.getRankedStats();
+
         ImageView playerIcon = view.findViewById(R.id.summonerIcon_Summoner);
-        ImageView rankQ = view.findViewById(R.id.soloQ);
-        ImageView rank5 = view.findViewById(R.id.flex);
-        ImageView rank3 = view.findViewById(R.id.flex3);
+        ImageView rankQ = view.findViewById(R.id.soloQ_Summoner);
+        ImageView rank5 = view.findViewById(R.id.flex5_Summoner);
+        ImageView rank3 = view.findViewById(R.id.flex3_Summoner);
 
         TextView name = view.findViewById(R.id.summonerName_Summoner);
         TextView rankQText = view.findViewById(R.id.rankQ_Summoner);
         TextView rank5Text = view.findViewById(R.id.rank5_Summoner);
         TextView rank3Text = view.findViewById(R.id.rank3_Summoner);
+        TextView wlRatioQ = view.findViewById(R.id.wlRatioQ);
+        TextView wlRatio5 = view.findViewById(R.id.wlRatio5);
+        TextView wlRatio3 = view.findViewById(R.id.wlRatio3);
+        TextView rankQLP = view.findViewById(R.id.rankQ_LP);
+        TextView rank5LP = view.findViewById(R.id.rank5_LP);
+        TextView rank3LP = view.findViewById(R.id.rank3_LP);
 
+        if(!TextUtils.isEmpty(player.getSummonerName()+"")){
+            name.setText(player.getSummonerName());
+        }
+
+        if(!TextUtils.isEmpty(player.getPlayerIcon()+"")) {
+            Picasso.get().load("http://ddragon.leagueoflegends.com/cdn/9.6.1/img/profileicon/" + player.getPlayerIcon() + ".png")
+                    .error(R.drawable.ic_launcher_background)
+                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .into(playerIcon);
+        }
+
+        summonerFragmentVM.soloQ.observe(getViewLifecycleOwner(), leagueApiData -> {
+            rankQText.setText(leagueApiData.tier+" "+leagueApiData.rank);//
+            wlRatioQ.setText("W: " + leagueApiData.wins+" L: "+leagueApiData.losses);
+            rankQLP.setText(leagueApiData.leaguePoints + " LP");
+            Picasso.get().load(leagueApiData.tierImageID)
+                    .error(R.drawable.ic_launcher_background)
+                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .into(rankQ);
+        });
+        summonerFragmentVM.flex5.observe(getViewLifecycleOwner(), leagueApiData -> {
+            rank5Text.setText(leagueApiData.tier+" "+leagueApiData.rank);
+            wlRatio5.setText("W: " + leagueApiData.wins+" L: "+leagueApiData.losses);
+            rank5LP.setText(leagueApiData.leaguePoints + " LP");
+            Picasso.get().load(leagueApiData.tierImageID)
+                    .error(R.drawable.ic_launcher_background)
+                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .into(rank5);
+        });
+        summonerFragmentVM.flex3.observe(getViewLifecycleOwner(), leagueApiData -> {
+            rank3Text.setText(leagueApiData.tier+" "+leagueApiData.rank);
+            wlRatio3.setText("W: " + leagueApiData.wins+" L: "+leagueApiData.losses);
+            rank3LP.setText(leagueApiData.leaguePoints + " LP");
+            Picasso.get().load(leagueApiData.tierImageID)
+                    .error(R.drawable.ic_launcher_background)
+                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .into(rank3);
+        });
     }
 
     // TODO: Rename method, update argument and hook method into UI event

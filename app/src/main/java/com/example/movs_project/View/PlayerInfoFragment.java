@@ -7,16 +7,21 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.movs_project.Model.Maps;
 import com.example.movs_project.Model.Player;
 import com.example.movs_project.R;
+import com.example.movs_project.ViewModel.PlayerInfoFragmentVM;
 import com.squareup.picasso.Picasso;
 
 
@@ -39,6 +44,8 @@ public class PlayerInfoFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    PlayerInfoFragmentVM playerInfoFragmentVM;
 
     public PlayerInfoFragment() {
         // Required empty public constructor
@@ -82,6 +89,13 @@ public class PlayerInfoFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         Player player = (Player) getArguments().getSerializable("Player");
 
+        playerInfoFragmentVM = ViewModelProviders.of(requireActivity()).get(PlayerInfoFragmentVM.class);
+
+        playerInfoFragmentVM.setPlayer(player);
+
+        playerInfoFragmentVM.getRankedStats();
+        playerInfoFragmentVM.getChampionPoints();
+
         TextView name = view.findViewById(R.id.summonerName_PLayerInfo);
         TextView rank = view.findViewById(R.id.rank_PlaerInfo);
         TextView wlRatio = view.findViewById(R.id.winLose_PlayerInfo);
@@ -92,9 +106,11 @@ public class PlayerInfoFragment extends Fragment {
         ImageView mainMastery1 = view.findViewById(R.id.mainMastery1_PlayerInfo);
         ImageView mainMastery2 = view.findViewById(R.id.mainMastery2_PlayerInfo);
         ImageView mainMastery3 = view.findViewById(R.id.mainMastery3_PlayerInfo);
-        ImageView subMastery = view.findViewById(R.id.subMastery_PlayerInfo);
         ImageView subMastery1 = view.findViewById(R.id.subMastery1_PlayerInfo);
         ImageView subMastery2 = view.findViewById(R.id.subMastery2_PlayerInfo);
+        ImageView perk1 = view.findViewById(R.id.perk1);
+        ImageView perk2 = view.findViewById(R.id.perk2);
+        ImageView perk3 = view.findViewById(R.id.perk3);
 
         if(!TextUtils.isEmpty(player.getSummonerName())){
             name.setText(player.getSummonerName());
@@ -106,57 +122,75 @@ public class PlayerInfoFragment extends Fragment {
             wlRatio.setText(player.getWlRatio());
         }
         if(!TextUtils.isEmpty(player.getChampionPoints()+"")){
-            championPoints.setText(player.getChampionPoints()+"");
+            championPoints.setText("Championpoints: " + player.getChampionPoints());
         }
 
         if(!TextUtils.isEmpty(player.getPlayerIcon()+"")){
-            Picasso.get().load(player.getPlayerIcon())
+            Picasso.get().load("http://ddragon.leagueoflegends.com/cdn/9.6.1/img/profileicon/" + player.getPlayerIcon() + ".png")
                     .error(R.drawable.ic_launcher_background)
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .into(playerIcon);
         }
-        if(!TextUtils.isEmpty(player.getPrimaryMastery()+"")){
-            Picasso.get().load(player.getPrimaryMastery())
+        if(!TextUtils.isEmpty(player.getPrimaryMastery1()+"")){
+            Picasso.get().load(Maps.MASTERY_URL + Maps.masteries.get(player.getPrimaryMastery1()))
                     .error(R.drawable.ic_launcher_background)
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .into(mainMastery);
         }
-        if(!TextUtils.isEmpty(player.getPrimaryMastery1()+"")){
-            Picasso.get().load(player.getPrimaryMastery1())
+        if(!TextUtils.isEmpty(player.getPrimaryMastery2()+"")){
+            Picasso.get().load(Maps.MASTERY_URL + Maps.masteries.get(player.getPrimaryMastery2()))
                     .error(R.drawable.ic_launcher_background)
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .into(mainMastery1);
         }
-        if(!TextUtils.isEmpty(player.getPrimaryMastery2()+"")){
-            Picasso.get().load(player.getPrimaryMastery2())
+        if(!TextUtils.isEmpty(player.getPrimaryMastery3()+"")){
+            Picasso.get().load(Maps.MASTERY_URL + Maps.masteries.get(player.getPrimaryMastery3()))
                     .error(R.drawable.ic_launcher_background)
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .into(mainMastery2);
         }
-        if(!TextUtils.isEmpty(player.getPrimaryMastery2()+"")){
-            Picasso.get().load(player.getPrimaryMastery2())
+        if(!TextUtils.isEmpty(player.getPrimaryMastery4()+"")){
+            Picasso.get().load(Maps.MASTERY_URL + Maps.masteries.get(player.getPrimaryMastery4()))
                     .error(R.drawable.ic_launcher_background)
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .into(mainMastery3);
         }
-        if(!TextUtils.isEmpty(player.getSubMastery()+"")){
-            Picasso.get().load(player.getSubMastery())
-                    .error(R.drawable.ic_launcher_background)
-                    .placeholder(R.drawable.ic_launcher_foreground)
-                    .into(subMastery);
-        }
         if(!TextUtils.isEmpty(player.getSubMastery1()+"")){
-            Picasso.get().load(player.getSubMastery1())
+            Picasso.get().load(Maps.MASTERY_URL + Maps.masteries.get(player.getSubMastery1()))
                     .error(R.drawable.ic_launcher_background)
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .into(subMastery1);
         }
         if(!TextUtils.isEmpty(player.getSubMastery2()+"")){
-            Picasso.get().load(player.getSubMastery2())
+            Picasso.get().load(Maps.MASTERY_URL + Maps.masteries.get(player.getSubMastery2()))
                     .error(R.drawable.ic_launcher_background)
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .into(subMastery2);
         }
+        if(!TextUtils.isEmpty(player.getPerk1()+"")){
+            Picasso.get().load(Maps.PERKS_URL + Maps.perks.get(player.getPerk1()))
+                    .error(R.drawable.ic_launcher_background)
+                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .into(perk1);
+        }
+        if(!TextUtils.isEmpty(player.getPerk2()+"")){
+            Picasso.get().load(Maps.PERKS_URL + Maps.perks.get(player.getPerk2()))
+                    .error(R.drawable.ic_launcher_background)
+                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .into(perk2);
+        }
+        if(!TextUtils.isEmpty(player.getPerk3()+"")){
+            Log.d("test",Maps.PERKS_URL + Maps.perks.get(player.getPerk3()));
+            Picasso.get().load(Maps.PERKS_URL + Maps.perks.get(player.getPerk3()))
+                    .error(R.drawable.ic_launcher_background)
+                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .into(perk3);
+        }
+
+        playerInfoFragmentVM.player.observe(this,player1 -> rank.setText(player1.getRank()));
+        playerInfoFragmentVM.player.observe(this,player1 -> wlRatio.setText(player1.getWlRatio()));
+        playerInfoFragmentVM.player.observe(this,player1 -> championPoints.setText("Championpoints: " + player1.getChampionPoints()));
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

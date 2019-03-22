@@ -54,6 +54,7 @@ public class LeagueApiData {
     @Expose
     public MiniSeries miniSeries;
 
+    public int tierImageID;
     @Override
     public String toString() {
         return "LeagueApiDatum{" +

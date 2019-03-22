@@ -19,17 +19,17 @@
         android:id="@+id/summonerName_Summoner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
         android:textAlignment="center"
+        android:textSize="30sp"
         app:autoSizeMaxTextSize="100dp"
         app:autoSizeMinTextSize="8dp"
         app:autoSizeStepGranularity="2dp"
-        app:autoSizeTextType="uniform"/>
+        app:autoSizeTextType="uniform" />
 
     <LinearLayout
         android:id="@+id/rankLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
         android:weightSum="3">
 
@@ -38,35 +38,51 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="100">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="10"
+                android:text="Solo/Duo"
+                android:textAlignment="center" />
 
             <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:src="@tools:sample/avatars" />
+                android:id="@+id/soloQ_Summoner"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                tools:src="@tools:sample/avatars"
+                android:layout_weight="55"/>
 
-            <TextView
-                android:id="@+id/rankQ_Summoner"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textAlignment="center"
-                app:autoSizeMaxTextSize="100dp"
-                app:autoSizeMinTextSize="8dp"
-                app:autoSizeStepGranularity="2dp"
-                app:autoSizeTextType="uniform"/>
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:layout_weight="35"
+                android:weightSum="3">
 
-            <TextView
-                android:id="@+id/wlRatioQ"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textAlignment="center"
-                app:autoSizeMaxTextSize="100dp"
-                app:autoSizeMinTextSize="8dp"
-                app:autoSizeStepGranularity="2dp"
-                app:autoSizeTextType="uniform"/>
+                <TextView
+                    android:id="@+id/rankQ_Summoner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/rankQ_LP"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/wlRatioQ"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:layout_weight="1" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -74,35 +90,51 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="100">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="10"
+                android:text="Flex 5vs5"
+                android:textAlignment="center" />
 
             <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:src="@tools:sample/avatars" />
+                android:id="@+id/flex5_Summoner"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                tools:src="@tools:sample/avatars"
+                android:layout_weight="55"/>
 
-            <TextView
-                android:id="@+id/rank5_Summoner"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textAlignment="center"
-                app:autoSizeMaxTextSize="100dp"
-                app:autoSizeMinTextSize="8dp"
-                app:autoSizeStepGranularity="2dp"
-                app:autoSizeTextType="uniform"/>
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:layout_weight="35"
+                android:weightSum="3">
 
-            <TextView
-                android:id="@+id/wlRatio5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textAlignment="center"
-                app:autoSizeMaxTextSize="100dp"
-                app:autoSizeMinTextSize="8dp"
-                app:autoSizeStepGranularity="2dp"
-                app:autoSizeTextType="uniform"/>
+                <TextView
+                    android:id="@+id/rank5_Summoner"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:textAlignment="center"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/rank5_LP"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:textAlignment="center"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/wlRatio5"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:textAlignment="center"
+                    android:layout_weight="1"/>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -110,35 +142,51 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="100">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="10"
+                android:text="Flex 3vs3"
+                android:textAlignment="center" />
 
             <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:src="@tools:sample/avatars" />
+                android:id="@+id/flex3_Summoner"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                tools:src="@tools:sample/avatars"
+                android:layout_weight="55"/>
 
-            <TextView
-                android:id="@+id/rank3_Summoner"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textAlignment="center"
-                app:autoSizeMaxTextSize="100dp"
-                app:autoSizeMinTextSize="8dp"
-                app:autoSizeStepGranularity="2dp"
-                app:autoSizeTextType="uniform"/>
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:layout_weight="35"
+                android:weightSum="3">
 
-            <TextView
-                android:id="@+id/wlRatio3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textAlignment="center"
-                app:autoSizeMaxTextSize="100dp"
-                app:autoSizeMinTextSize="8dp"
-                app:autoSizeStepGranularity="2dp"
-                app:autoSizeTextType="uniform"/>
+                <TextView
+                    android:id="@+id/rank3_Summoner"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:textAlignment="center"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/rank3_LP"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:textAlignment="center"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/wlRatio3"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:textAlignment="center"
+                    android:layout_weight="1" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
