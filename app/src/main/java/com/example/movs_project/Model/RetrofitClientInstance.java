@@ -15,7 +15,7 @@ public class RetrofitClientInstance {
     private static Retrofit retrofit;
     public static  String BASE_URL = "http://ddragon.leagueoflegends.com/cdn/9.6.1/data/en_US/";
     public static  String BASE_URL2 ="https://euw1.api.riotgames.com/";
-    private static final String KEY = "RGAPI-a35b019f-c9f4-4c33-8585-08a693427fb2";
+    private static final String KEY = "RGAPI-637e2361-b94d-47e4-8248-0e523acdd9f9";
 
 
     public static Retrofit getRetrofitInstanceLOL() {
