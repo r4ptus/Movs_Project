@@ -100,7 +100,9 @@ public class PlayerInfoFragment extends Fragment {
         TextView rank = view.findViewById(R.id.rank_PlaerInfo);
         TextView wlRatio = view.findViewById(R.id.winLose_PlayerInfo);
         TextView championPoints = view.findViewById(R.id.championPoints_PlayerInfo);
+        TextView championMastery = view.findViewById(R.id.championMastery_PlayerInfo);
 
+        ImageView championIcon = view.findViewById(R.id.championIcon_PlayerInfo);
         ImageView playerIcon = view.findViewById(R.id.playerIcon_PLayerInfo);
         ImageView mainMastery = view.findViewById(R.id.mainMastery_PlayerInfo);
         ImageView mainMastery1 = view.findViewById(R.id.mainMastery1_PlayerInfo);
@@ -122,7 +124,7 @@ public class PlayerInfoFragment extends Fragment {
             wlRatio.setText(player.getWlRatio());
         }
         if(!TextUtils.isEmpty(player.getChampionPoints()+"")){
-            championPoints.setText("Championpoints: " + player.getChampionPoints());
+            championPoints.setText("Points: " + player.getChampionPoints());
         }
 
         if(!TextUtils.isEmpty(player.getPlayerIcon()+"")){
@@ -130,6 +132,12 @@ public class PlayerInfoFragment extends Fragment {
                     .error(R.drawable.ic_launcher_background)
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .into(playerIcon);
+        }
+        if(!TextUtils.isEmpty(player.getChampionIcon()+"")){
+            Picasso.get().load(Maps.CHAMPION_URL + Maps.champions.get(player.getChampionIcon()))
+                    .error(R.drawable.ic_launcher_background)
+                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .into(championIcon);
         }
         if(!TextUtils.isEmpty(player.getPrimaryMastery1()+"")){
             Picasso.get().load(Maps.MASTERY_URL + Maps.masteries.get(player.getPrimaryMastery1()))
@@ -189,7 +197,8 @@ public class PlayerInfoFragment extends Fragment {
 
         playerInfoFragmentVM.player.observe(this,player1 -> rank.setText(player1.getRank()));
         playerInfoFragmentVM.player.observe(this,player1 -> wlRatio.setText(player1.getWlRatio()));
-        playerInfoFragmentVM.player.observe(this,player1 -> championPoints.setText("Championpoints: " + player1.getChampionPoints()));
+        playerInfoFragmentVM.player.observe(this,player1 -> championPoints.setText("Points: " + player1.getChampionPoints()));
+        playerInfoFragmentVM.player.observe(this,player1 -> championMastery.setText("Mastery: "+ player1.getChampionLvl()));
 
     }
 

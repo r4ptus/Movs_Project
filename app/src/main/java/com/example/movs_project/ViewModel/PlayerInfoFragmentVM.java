@@ -68,6 +68,7 @@ public class PlayerInfoFragmentVM extends ViewModel {
                 if(response.isSuccessful()){
                     Player tmp = player.getValue();
                     tmp.setChampionPoints((long)response.body().championPoints);
+                    tmp.setChampionLvl(response.body().championLevel);
                     player.setValue(tmp);
                     Log.d(TAG,"loaded ChampionMasterypoints");
                 }

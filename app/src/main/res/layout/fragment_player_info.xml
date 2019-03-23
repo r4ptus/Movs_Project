@@ -9,176 +9,236 @@
     tools:context=".View.PlayerInfoFragment"
     android:weightSum="2">
 
-    <LinearLayout
-        android:id="@+id/playerInfo_PlayerInfo"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/info"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <ImageView
-            android:id="@+id/playerIcon_PLayerInfo"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            tools:src="@tools:sample/avatars" />
+        android:elevation="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="5dp"
+        card_view:cardCornerRadius="6dp">
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_gravity="center">
-
-            <TextView
-                android:id="@+id/summonerName_PLayerInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                card_view:autoSizeMaxTextSize="100dp"
-                card_view:autoSizeMinTextSize="12dp"
-                card_view:autoSizeStepGranularity="2dp"
-                card_view:autoSizeTextType="uniform"
-                android:textAlignment="center" />
-
-            <TextView
-                android:id="@+id/rank_PlaerInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                card_view:autoSizeMaxTextSize="100dp"
-                card_view:autoSizeMinTextSize="12dp"
-                card_view:autoSizeStepGranularity="2dp"
-                card_view:autoSizeTextType="uniform"
-                android:textAlignment="center" />
-
-            <TextView
-                android:id="@+id/winLose_PlayerInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                card_view:autoSizeMaxTextSize="100dp"
-                card_view:autoSizeMinTextSize="12dp"
-                card_view:autoSizeStepGranularity="2dp"
-                card_view:autoSizeTextType="uniform"
-                android:textAlignment="center" />
-
-            <TextView
-                android:id="@+id/championPoints_PlayerInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                card_view:autoSizeMaxTextSize="100dp"
-                card_view:autoSizeMinTextSize="12dp"
-                card_view:autoSizeStepGranularity="2dp"
-                card_view:autoSizeTextType="uniform"
-                android:textAlignment="center" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/masteries_PLayerInfo"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <LinearLayout
-            android:layout_width="0dp"
+            android:id="@+id/playerInfo_PlayerInfo"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:weightSum="5">
-
-            <ImageView
-                android:id="@+id/mainMastery_PlayerInfo"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginBottom="5dp"
-                android:layout_weight="2"
-                tools:src="@tools:sample/avatars" />
-
-            <ImageView
-                android:id="@+id/mainMastery1_PlayerInfo"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_weight="1"
-                tools:src="@tools:sample/avatars" />
-
-            <ImageView
-                android:id="@+id/mainMastery2_PlayerInfo"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_weight="1"
-                tools:src="@tools:sample/avatars" />
-
-            <ImageView
-                android:id="@+id/mainMastery3_PlayerInfo"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                tools:src="@tools:sample/avatars" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:weightSum="4">
-
-            <ImageView
-                android:id="@+id/subMastery1_PlayerInfo"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginBottom="5dp"
-                android:layout_weight="1"
-                tools:src="@tools:sample/avatars" />
-
-            <ImageView
-                android:id="@+id/subMastery2_PlayerInfo"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="5dp"
-                android:layout_weight="1"
-                tools:src="@tools:sample/avatars" />
+            android:orientation="horizontal"
+            android:weightSum="2">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:weightSum="3">
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:weightSum="10">
+                <ImageView
+                    android:id="@+id/playerIcon_PLayerInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    tools:src="@tools:sample/avatars"
+                    android:layout_weight="7"/>
+                <TextView
+                    android:id="@+id/summonerName_PLayerInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    card_view:autoSizeMaxTextSize="100dp"
+                    card_view:autoSizeMinTextSize="12dp"
+                    card_view:autoSizeStepGranularity="2dp"
+                    card_view:autoSizeTextType="uniform"
+                    android:textAlignment="center"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/rank_PlaerInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    card_view:autoSizeMaxTextSize="100dp"
+                    card_view:autoSizeMinTextSize="12dp"
+                    card_view:autoSizeStepGranularity="2dp"
+                    card_view:autoSizeTextType="uniform"
+                    android:textAlignment="center"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/winLose_PlayerInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    card_view:autoSizeMaxTextSize="100dp"
+                    card_view:autoSizeMinTextSize="12dp"
+                    card_view:autoSizeStepGranularity="2dp"
+                    card_view:autoSizeTextType="uniform"
+                    android:textAlignment="center"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:weightSum="10">
 
                 <ImageView
-                    android:id="@+id/perk1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:adjustViewBounds="true" />
+                    android:id="@+id/championIcon_PlayerInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="7"
+                    tools:src="@tools:sample/avatars" />
 
-                <ImageView
-                    android:id="@+id/perk2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                <TextView
+                    android:id="@+id/championMastery_PlayerInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:adjustViewBounds="true" />
+                    android:textAlignment="center"
+                    card_view:autoSizeMaxTextSize="100dp"
+                    card_view:autoSizeMinTextSize="12dp"
+                    card_view:autoSizeStepGranularity="2dp"
+                    card_view:autoSizeTextType="uniform" />
 
-                <ImageView
-                    android:id="@+id/perk3"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                <TextView
+                    android:id="@+id/championPoints_PlayerInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:adjustViewBounds="true" />
+                    android:textAlignment="center"
+                    card_view:autoSizeMaxTextSize="100dp"
+                    card_view:autoSizeMinTextSize="12dp"
+                    card_view:autoSizeStepGranularity="2dp"
+                    card_view:autoSizeTextType="uniform" />
+
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/masteries"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:elevation="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="5dp"
+        card_view:cardCornerRadius="6dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="10">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="Masteries"
+                android:textAlignment="center"
+                android:textSize="24sp" />
+            <LinearLayout
+                android:id="@+id/masteries_PLayerInfo"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="9"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:weightSum="5">
+
+                    <ImageView
+                        android:id="@+id/mainMastery_PlayerInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="2"
+                        tools:src="@tools:sample/avatars" />
+
+                    <ImageView
+                        android:id="@+id/mainMastery1_PlayerInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="1"
+                        tools:src="@tools:sample/avatars" />
+
+                    <ImageView
+                        android:id="@+id/mainMastery2_PlayerInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="1"
+                        tools:src="@tools:sample/avatars" />
+
+                    <ImageView
+                        android:id="@+id/mainMastery3_PlayerInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="1"
+                        tools:src="@tools:sample/avatars" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical"
+                    android:weightSum="5">
+
+                    <ImageView
+                        android:id="@+id/subMastery1_PlayerInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        tools:src="@tools:sample/avatars" />
+
+                    <ImageView
+                        android:id="@+id/subMastery2_PlayerInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:layout_marginBottom="5dp"
+                        tools:src="@tools:sample/avatars" />
+
+                    <ImageView
+                        android:id="@+id/perk1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:id="@+id/perk2"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:id="@+id/perk3"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
 </LinearLayout>

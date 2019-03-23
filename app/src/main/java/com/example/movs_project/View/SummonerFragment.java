@@ -117,12 +117,34 @@ public class SummonerFragment extends Fragment {
             name.setText(player.getSummonerName());
         }
 
+        rankQText.setText("UNRANKED");
+        rank5Text.setText("UNRANKED");
+        rank3Text.setText("UNRANKED");
+
+        Picasso.get().load(R.drawable.unranked)
+                .error(R.drawable.ic_launcher_background)
+                .placeholder(R.drawable.ic_launcher_foreground)
+                .into(rankQ);
+
+        Picasso.get().load(R.drawable.unranked)
+                .error(R.drawable.ic_launcher_background)
+                .placeholder(R.drawable.ic_launcher_foreground)
+                .into(rank5);
+
+
+        Picasso.get().load(R.drawable.unranked)
+                .error(R.drawable.ic_launcher_background)
+                .placeholder(R.drawable.ic_launcher_foreground)
+                .into(rank3);
+
         if(!TextUtils.isEmpty(player.getPlayerIcon()+"")) {
             Picasso.get().load("http://ddragon.leagueoflegends.com/cdn/9.6.1/img/profileicon/" + player.getPlayerIcon() + ".png")
                     .error(R.drawable.ic_launcher_background)
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .into(playerIcon);
         }
+
+
 
         summonerFragmentVM.soloQ.observe(getViewLifecycleOwner(), leagueApiData -> {
             rankQText.setText(leagueApiData.tier+" "+leagueApiData.rank);//

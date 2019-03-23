@@ -29,6 +29,7 @@ public class Player implements Serializable {
     private int subMastery1;
     private int subMastery2;
     private int queueType;
+    private int championLvl;
 
     public String getId(){return id;}
 
@@ -186,7 +187,15 @@ public class Player implements Serializable {
 
     public int getQueueType(){return queueType;}
 
-    public Player(String id,String name,int playerIcon)
+    public int getChampionLvl() {
+        return championLvl;
+    }
+
+    public void setChampionLvl(int championLvl) {
+        this.championLvl = championLvl;
+    }
+
+    public Player(String id, String name, int playerIcon)
     {
         this.id = id;
         summonerName = name;
