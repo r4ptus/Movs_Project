@@ -33,20 +33,26 @@ public class SearchFragmentVM extends ViewModel {
 
     public enum IsLiveMatch{
         YES,
-        NO
+        NO,
+        UNDEFINED
     }
 
     public final MutableLiveData<IsLiveMatch> isLiveMatch = new MutableLiveData<>();
 
     public Player player;
 
-    public ArrayList<Player> teamB = new ArrayList<>();
-    public ArrayList<Player> teamR = new ArrayList<>();
+    public ArrayList<Player> teamB ;
+    public ArrayList<Player> teamR ;
 
     GetDataService service = RetrofitClientInstance.getRetrofitInstanceLOL().create(GetDataService.class);
 
-    public void getSummonerApiData(String name){
+    public SearchFragmentVM(){
+        teamR = new ArrayList<>();
+        teamB = new ArrayList<>();
+    }
 
+    public void getSummonerApiData(String name){
+        isLiveMatch.setValue(IsLiveMatch.UNDEFINED);
         Call<SummonerApiData> call = service.getSummoner(name);
         call.enqueue(new Callback<SummonerApiData>() {
             @Override
@@ -98,6 +104,9 @@ public class SearchFragmentVM extends ViewModel {
     private void initTeams( SpectatorApiData data){
 
         Log.d(TAG,"LoopStart");
+
+        teamR.clear();
+        teamB.clear();
 
         for (Participant participant : data.participants){
 

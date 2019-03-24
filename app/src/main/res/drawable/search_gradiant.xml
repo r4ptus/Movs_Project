@@ -6,8 +6,8 @@
                 android:type="linear"
                 android:centerX="52%"
                 android:startColor="#FF785A28"
-                android:centerColor="#FF000000"
-                android:endColor="#FF000000"
+                android:centerColor="#FF010A13"
+                android:endColor="#FF010A13"
                 android:angle="90"/>
         </shape>
     </item>

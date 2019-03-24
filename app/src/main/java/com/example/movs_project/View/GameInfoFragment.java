@@ -1,6 +1,7 @@
 package com.example.movs_project.View;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -19,7 +20,6 @@ import android.view.ViewGroup;
 import com.example.movs_project.Adapter.TeamAdapter;
 import com.example.movs_project.Model.Player;
 import com.example.movs_project.R;
-import com.example.movs_project.ViewModel.GameInfoFragmentVM;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -44,8 +44,6 @@ public class GameInfoFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
-
-    private GameInfoFragmentVM gameInfoFragmentVM;
 
     public GameInfoFragment() {
         // Required empty public constructor
@@ -93,21 +91,20 @@ public class GameInfoFragment extends Fragment {
         final ArrayList<Player> teamB = (ArrayList<Player>) bundle.getSerializable("teamB");
         final ArrayList<Player> teamR = (ArrayList<Player>) bundle.getSerializable("teamR");
 
-        gameInfoFragmentVM = ViewModelProviders.of(this).get(GameInfoFragmentVM.class);
+        //gameInfoFragmentVM = ViewModelProviders.of(this).get(GameInfoFragmentVM.class);
 
 
         RecyclerView recyclerViewBlue = view.findViewById(R.id.teamBlue);
 
         final TeamAdapter blueTeamAdapter = new TeamAdapter(teamB);
 
-        RecyclerView.LayoutManager layoutManagerBlue = new LinearLayoutManager(getContext());
+        RecyclerView.LayoutManager layoutManagerBlue = new LinearLayoutManager(getContext(),getScreenOrientation(),false);
 
         recyclerViewBlue.setLayoutManager(layoutManagerBlue);
-        recyclerViewBlue.setNestedScrollingEnabled(false);
 
         recyclerViewBlue.setAdapter(blueTeamAdapter);
 
-        ItemTouchHelper helperBlue = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,0) {
+        ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,0) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
 
@@ -126,7 +123,33 @@ public class GameInfoFragment extends Fragment {
 
             }
         });
-        helperBlue.attachToRecyclerView(recyclerViewBlue);
+        ItemTouchHelper helperH = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT,0) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+
+                int position_dragged = viewHolder.getAdapterPosition();
+                int position_target = target.getAdapterPosition();
+
+                Collections.swap(teamB,position_dragged,position_target);
+
+                blueTeamAdapter.notifyItemMoved(position_dragged,position_target);
+
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+
+            }
+        });
+
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            helperH.attachToRecyclerView(recyclerViewBlue);
+        }else if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+            helper.attachToRecyclerView(recyclerViewBlue);
+        }
+
+
 
         /**---------------------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -134,7 +157,7 @@ public class GameInfoFragment extends Fragment {
 
         final TeamAdapter redTeamAdapter = new TeamAdapter(teamR);
 
-        RecyclerView.LayoutManager layoutManagerRed = new LinearLayoutManager(getContext());
+        RecyclerView.LayoutManager layoutManagerRed = new LinearLayoutManager(getContext(),getScreenOrientation(),false);
 
         recyclerViewRed.setLayoutManager(layoutManagerRed);
 
@@ -159,7 +182,44 @@ public class GameInfoFragment extends Fragment {
 
             }
         });
-        helperRed.attachToRecyclerView(recyclerViewRed);
+        ItemTouchHelper helperRedH = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT,0) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+
+                int position_dragged = viewHolder.getAdapterPosition();
+                int position_target = target.getAdapterPosition();
+
+                Collections.swap(teamR,position_dragged,position_target);
+
+                redTeamAdapter.notifyItemMoved(position_dragged,position_target);
+
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+
+            }
+        });
+
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            helperRedH.attachToRecyclerView(recyclerViewRed);
+        }else if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+            helperRed.attachToRecyclerView(recyclerViewRed);
+        }
+    }
+
+    // Custom method to get screen current orientation
+    protected int getScreenOrientation(){
+        int orientation = LinearLayoutManager.VERTICAL;
+
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            orientation = LinearLayoutManager.HORIZONTAL;
+        }else if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+            orientation = LinearLayoutManager.VERTICAL;
+        }
+
+        return orientation;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

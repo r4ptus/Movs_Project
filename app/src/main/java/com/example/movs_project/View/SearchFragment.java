@@ -105,13 +105,12 @@ public class SearchFragment extends Fragment {
                     searchFragmentVM.getSummonerApiData(tmp);
 
                     final Bundle bundle = new Bundle();
-                    bundle.putSerializable("teamB",searchFragmentVM.teamB);
-                    bundle.putSerializable("teamR",searchFragmentVM.teamR);
-
 
                     searchFragmentVM.isLiveMatch.observe(getViewLifecycleOwner(), isLiveMatch -> {
                         switch (isLiveMatch){
                             case YES:
+                                bundle.putSerializable("teamB",searchFragmentVM.teamB);
+                                bundle.putSerializable("teamR",searchFragmentVM.teamR);
                                 Navigation.findNavController(view).navigate(R.id.action_searchFragment_to_gameInfoFragment,bundle);
                                 break;
                             case NO:

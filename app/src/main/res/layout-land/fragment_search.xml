@@ -11,8 +11,8 @@
     <EditText
         android:id="@+id/searchText"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="238dp"
+        android:layout_height="86dp"
+        android:layout_marginTop="120dp"
         android:backgroundTint="@color/gold"
         android:ems="10"
         android:hint="@string/summoner_name"
@@ -23,6 +23,7 @@
         android:textCursorDrawable="@color/gold"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,7 +31,7 @@
         android:id="@+id/searchButton"
         android:layout_width="133dp"
         android:layout_height="54dp"
-        android:layout_marginTop="111dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/search"
         android:background="@drawable/button_bg"
@@ -39,5 +40,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchText"
-        app:layout_constraintVertical_bias="0.003" />
+        app:layout_constraintVertical_bias="0.318" />
 </androidx.constraintlayout.widget.ConstraintLayout>

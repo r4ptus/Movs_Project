@@ -35,6 +35,9 @@ public class SummonerFragmentVM extends ViewModel {
     GetDataService service = RetrofitClientInstance.getRetrofitInstanceLOL().create(GetDataService.class);
 
     public void getRankedStats(){
+        soloQ.setValue(new LeagueApiData());
+        flex5.setValue(new LeagueApiData());
+        flex3.setValue(new LeagueApiData());
         Call<List<LeagueApiData>> call = service.getLeague(player.getValue().getId());
         call.enqueue(new Callback<List<LeagueApiData>>() {
             @Override

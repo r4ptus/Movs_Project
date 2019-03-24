@@ -55,6 +55,10 @@ public class LeagueApiData {
     public MiniSeries miniSeries;
 
     public int tierImageID;
+
+    public LeagueApiData() {
+    }
+
     @Override
     public String toString() {
         return "LeagueApiDatum{" +
