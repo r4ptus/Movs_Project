@@ -161,6 +161,7 @@ public class SearchFragmentVM extends ViewModel {
                         for (Slot s: md.slots) {
                             for (Rune r: s.runes) {
                                 Maps.masteries.put(r.id,r.icon);
+                                Maps.masteriesName.put(r.id,r.name);
                             }
                         }
                     }

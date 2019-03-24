@@ -7,9 +7,11 @@ import java.util.HashMap;
 public class Maps {
 
     public static HashMap<Integer,String> perks = new HashMap<>() ;
+    public static HashMap<Integer,String> perksDesc = new HashMap<>() ;
     public static HashMap<Integer,String> spells = new HashMap<>() ;
     public static HashMap<Integer,String> champions = new HashMap<>() ;
     public static HashMap<Integer,String> masteries = new HashMap<>();
+    public static HashMap<Integer,String> masteriesName = new HashMap<>();
     public static HashMap<String,Integer> tiers = new HashMap<>();
     public static String PERKS_URL ="http://ddragon.leagueoflegends.com/cdn/img/perk-images/StatMods/";
     public static String SPELLS_URL = "http://ddragon.leagueoflegends.com/cdn/9.6.1/img/spell/";
@@ -41,6 +43,14 @@ public class Maps {
         perks.put(5001,"StatModsHealthScalingIcon.png");
         perks.put(5007,"StatModsCDRScalingIcon.png");
         perks.put(5005,"StatModsAttackSpeedIcon.png");
+
+        //PerksDesc
+        perksDesc.put(5008,"+9 Adaptive Force");
+        perksDesc.put(5003,"+8 Magic Resist");
+        perksDesc.put(5002,"+6 Armor");
+        perksDesc.put(5001,"+15-90 Health");
+        perksDesc.put(5007,"+1-10% CDR");
+        perksDesc.put(5005,"+10% Attack Speed");
 
         //tiers
         tiers.put("IRON", R.drawable.emblem_iron);

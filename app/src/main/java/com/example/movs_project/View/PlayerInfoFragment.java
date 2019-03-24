@@ -101,6 +101,15 @@ public class PlayerInfoFragment extends Fragment {
         TextView wlRatio = view.findViewById(R.id.winLose_PlayerInfo);
         TextView championPoints = view.findViewById(R.id.championPoints_PlayerInfo);
         TextView championMastery = view.findViewById(R.id.championMastery_PlayerInfo);
+        TextView mainMastery1Text = view.findViewById(R.id.mainMastery1Text_PlayerInfo);
+        TextView mainMastery2Text = view.findViewById(R.id.mainMastery2Text_PlayerInfo);
+        TextView mainMastery3Text = view.findViewById(R.id.mainMasteryText3_PlayerInfo);
+        TextView mainMasteryText = view.findViewById(R.id.mainMasteryText_PlayerInfo);
+        TextView subMasteryText = view.findViewById(R.id.subMasteryText_PlayerInfo);
+        TextView subMastery1Text = view.findViewById(R.id.subMastery1Text_PlayerInfo);
+        TextView perk1Text = view.findViewById(R.id.perk1Text_PlayerInfo);
+        TextView perk2Text = view.findViewById(R.id.perk2Text_PlayerInfo);
+        TextView perk3Text = view.findViewById(R.id.perk3Text_PlayerInfo);
 
         ImageView championIcon = view.findViewById(R.id.championIcon_PlayerInfo);
         ImageView playerIcon = view.findViewById(R.id.playerIcon_PLayerInfo);
@@ -126,6 +135,19 @@ public class PlayerInfoFragment extends Fragment {
         if(!TextUtils.isEmpty(player.getChampionPoints()+"")){
             championPoints.setText("Points: " + player.getChampionPoints());
         }
+
+        mainMasteryText.setText(Maps.masteriesName.get(player.getPrimaryMastery1()));
+        mainMastery1Text.setText(Maps.masteriesName.get(player.getPrimaryMastery2()));
+        mainMastery2Text.setText(Maps.masteriesName.get(player.getPrimaryMastery3()));
+        mainMastery3Text.setText(Maps.masteriesName.get(player.getPrimaryMastery4()));
+
+        subMasteryText.setText(Maps.masteriesName.get(player.getSubMastery1()));
+        subMastery1Text.setText(Maps.masteriesName.get(player.getSubMastery2()));
+
+        perk1Text.setText(Maps.perksDesc.get(player.getPerk1()));
+        perk2Text.setText(Maps.perksDesc.get(player.getPerk2()));
+        perk3Text.setText(Maps.perksDesc.get(player.getPerk3()));
+
 
         if(!TextUtils.isEmpty(player.getPlayerIcon()+"")){
             Picasso.get().load("http://ddragon.leagueoflegends.com/cdn/9.6.1/img/profileicon/" + player.getPlayerIcon() + ".png")

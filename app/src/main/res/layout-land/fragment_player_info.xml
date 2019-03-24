@@ -27,7 +27,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="horizontal"
-            android:weightSum="2">
+            android:weightSum="2"
+            android:background="@drawable/card_bg">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -40,11 +41,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     tools:src="@tools:sample/avatars"
-                    android:layout_weight="7"/>
+                    android:layout_weight="7"
+                    android:paddingStart="2dp"/>
                 <TextView
                     android:id="@+id/summonerName_PLayerInfo"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
+                    android:textColor="@color/gold"
                     card_view:autoSizeMaxTextSize="100dp"
                     card_view:autoSizeMinTextSize="12dp"
                     card_view:autoSizeStepGranularity="2dp"
@@ -56,6 +59,7 @@
                     android:id="@+id/rank_PlaerInfo"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
+                    android:textColor="@color/gold"
                     card_view:autoSizeMaxTextSize="100dp"
                     card_view:autoSizeMinTextSize="12dp"
                     card_view:autoSizeStepGranularity="2dp"
@@ -67,6 +71,7 @@
                     android:id="@+id/winLose_PlayerInfo"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
+                    android:textColor="@color/gold"
                     card_view:autoSizeMaxTextSize="100dp"
                     card_view:autoSizeMinTextSize="12dp"
                     card_view:autoSizeStepGranularity="2dp"
@@ -87,7 +92,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="7"
-                    tools:src="@tools:sample/avatars" />
+                    tools:src="@tools:sample/avatars"
+                    android:paddingEnd="2dp"/>
 
                 <TextView
                     android:id="@+id/championMastery_PlayerInfo"
@@ -95,6 +101,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:textAlignment="center"
+                    android:textColor="@color/gold"
                     card_view:autoSizeMaxTextSize="100dp"
                     card_view:autoSizeMinTextSize="12dp"
                     card_view:autoSizeStepGranularity="2dp"
@@ -105,6 +112,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
+                    android:textColor="@color/gold"
                     android:textAlignment="center"
                     card_view:autoSizeMaxTextSize="100dp"
                     card_view:autoSizeMinTextSize="12dp"
@@ -132,7 +140,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:weightSum="10">
+            android:weightSum="10"
+            android:background="@drawable/card_bg" >
 
             <TextView
                 android:layout_width="match_parent"
@@ -140,7 +149,10 @@
                 android:layout_weight="1"
                 android:text="Masteries"
                 android:textAlignment="center"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:textColor="@color/gold"
+                android:textStyle="bold" />
+
             <LinearLayout
                 android:id="@+id/masteries_PLayerInfo"
                 android:layout_width="match_parent"
@@ -153,89 +165,242 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:orientation="horizontal"
                     android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:weightSum="5">
+                    android:weightSum="3">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:weightSum="9">
 
-                    <ImageView
-                        android:id="@+id/mainMastery_PlayerInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginBottom="5dp"
+                        <ImageView
+                            android:id="@+id/mainMastery_PlayerInfo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_weight="3"
+                            android:adjustViewBounds="true"
+                            tools:src="@tools:sample/avatars" />
+
+                        <ImageView
+                            android:id="@+id/mainMastery1_PlayerInfo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_weight="2"
+                            android:adjustViewBounds="true"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            tools:src="@tools:sample/avatars" />
+
+                        <ImageView
+                            android:id="@+id/mainMastery2_PlayerInfo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_weight="2"
+                            android:adjustViewBounds="true"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            tools:src="@tools:sample/avatars" />
+
+                        <ImageView
+                            android:id="@+id/mainMastery3_PlayerInfo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="2"
+                            android:adjustViewBounds="true"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            tools:src="@tools:sample/avatars" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
                         android:layout_weight="2"
-                        tools:src="@tools:sample/avatars" />
+                        android:weightSum="9">
 
-                    <ImageView
-                        android:id="@+id/mainMastery1_PlayerInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_weight="1"
-                        tools:src="@tools:sample/avatars" />
+                        <TextView
+                            android:id="@+id/mainMasteryText_PlayerInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="3"
+                            android:textAlignment="center"
+                            android:textColor="@color/gold"
+                            android:textSize="18sp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
 
-                    <ImageView
-                        android:id="@+id/mainMastery2_PlayerInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_weight="1"
-                        tools:src="@tools:sample/avatars" />
+                        <TextView
+                            android:id="@+id/mainMastery1Text_PlayerInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="2"
+                            android:textAlignment="center"
+                            android:textColor="@color/gold"
+                            android:textSize="18sp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
 
-                    <ImageView
-                        android:id="@+id/mainMastery3_PlayerInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_weight="1"
-                        tools:src="@tools:sample/avatars" />
+                        <TextView
+                            android:id="@+id/mainMastery2Text_PlayerInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="2"
+                            android:textAlignment="center"
+                            android:textColor="@color/gold"
+                            android:textSize="18sp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/mainMasteryText3_PlayerInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="2"
+                            android:textAlignment="center"
+                            android:textColor="@color/gold"
+                            android:textSize="18sp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:layout_marginTop="5dp"
-                    android:orientation="vertical"
-                    android:weightSum="5">
+                    android:orientation="horizontal"
+                    android:weightSum="3">
 
-                    <ImageView
-                        android:id="@+id/subMastery1_PlayerInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginBottom="5dp"
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
-                        tools:src="@tools:sample/avatars" />
+                        android:orientation="vertical"
+                        android:weightSum="12">
 
-                    <ImageView
-                        android:id="@+id/subMastery2_PlayerInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:layout_marginBottom="5dp"
-                        tools:src="@tools:sample/avatars" />
+                        <ImageView
+                            android:id="@+id/subMastery1_PlayerInfo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_weight="3"
+                            android:adjustViewBounds="true"
+                            tools:src="@tools:sample/avatars" />
 
-                    <ImageView
-                        android:id="@+id/perk1"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1" />
+                        <ImageView
+                            android:id="@+id/subMastery2_PlayerInfo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_weight="3"
+                            android:adjustViewBounds="true"
+                            tools:src="@tools:sample/avatars" />
 
-                    <ImageView
-                        android:id="@+id/perk2"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1" />
+                        <ImageView
+                            android:id="@+id/perk1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="2"
+                            android:adjustViewBounds="true" />
 
-                    <ImageView
-                        android:id="@+id/perk3"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1" />
+                        <ImageView
+                            android:id="@+id/perk2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="2"
+                            android:adjustViewBounds="true" />
 
+                        <ImageView
+                            android:id="@+id/perk3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="2"
+                            android:adjustViewBounds="true" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="2"
+                        android:orientation="vertical"
+                        android:weightSum="12">
+
+                        <TextView
+                            android:id="@+id/subMasteryText_PlayerInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_weight="3"
+                            android:gravity="center"
+                            android:textAlignment="center"
+                            android:textColor="@color/gold"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/subMastery1Text_PlayerInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="5dp"
+                            android:layout_weight="3"
+                            android:gravity="center"
+                            android:textAlignment="center"
+                            android:textColor="@color/gold"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/perk1Text_PlayerInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:textAlignment="center"
+                            android:textColor="@color/gold"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/perk2Text_PlayerInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:textAlignment="center"
+                            android:textColor="@color/gold"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/perk3Text_PlayerInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:textAlignment="center"
+                            android:textColor="@color/gold"
+                            android:textSize="18sp" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
