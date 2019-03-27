@@ -147,36 +147,42 @@ public class SummonerFragment extends Fragment {
 
 
         summonerFragmentVM.soloQ.observe(getViewLifecycleOwner(), leagueApiData -> {
-            rankQText.setText(leagueApiData.tier+" "+leagueApiData.rank);//
-            wlRatioQ.setText("W: " + leagueApiData.wins+" L: "+leagueApiData.losses);
-            rankQLP.setText(leagueApiData.leaguePoints + " LP");
-            if(leagueApiData.tierImageID != 0) {
-                Picasso.get().load(leagueApiData.tierImageID)
-                        .error(R.drawable.ic_launcher_background)
-                        .placeholder(R.drawable.ic_launcher_foreground)
-                        .into(rankQ);
-            }
+                    if(leagueApiData.tier!=null) {
+                        rankQText.setText(leagueApiData.tier + " " + leagueApiData.rank);//
+                        wlRatioQ.setText("W: " + leagueApiData.wins + " L: " + leagueApiData.losses);
+                        rankQLP.setText(leagueApiData.leaguePoints + " LP");
+                        if (leagueApiData.tierImageID != 0) {
+                            Picasso.get().load(leagueApiData.tierImageID)
+                                    .error(R.drawable.ic_launcher_background)
+                                    .placeholder(R.drawable.ic_launcher_foreground)
+                                    .into(rankQ);
+                        }
+                    }
         });
         summonerFragmentVM.flex5.observe(getViewLifecycleOwner(), leagueApiData -> {
-            rank5Text.setText(leagueApiData.tier+" "+leagueApiData.rank);
-            wlRatio5.setText("W: " + leagueApiData.wins+" L: "+leagueApiData.losses);
-            rank5LP.setText(leagueApiData.leaguePoints + " LP");
-            if(leagueApiData.tierImageID != 0) {
-                Picasso.get().load(leagueApiData.tierImageID)
-                        .error(R.drawable.ic_launcher_background)
-                        .placeholder(R.drawable.ic_launcher_foreground)
-                        .into(rank5);
-            }
+                    if(leagueApiData.tier!=null) {
+                        rank5Text.setText(leagueApiData.tier + " " + leagueApiData.rank);
+                        wlRatio5.setText("W: " + leagueApiData.wins + " L: " + leagueApiData.losses);
+                        rank5LP.setText(leagueApiData.leaguePoints + " LP");
+                        if (leagueApiData.tierImageID != 0) {
+                            Picasso.get().load(leagueApiData.tierImageID)
+                                    .error(R.drawable.ic_launcher_background)
+                                    .placeholder(R.drawable.ic_launcher_foreground)
+                                    .into(rank5);
+                        }
+                    }
         });
         summonerFragmentVM.flex3.observe(getViewLifecycleOwner(), leagueApiData -> {
-            rank3Text.setText(leagueApiData.tier+" "+leagueApiData.rank);
-            wlRatio3.setText("W: " + leagueApiData.wins+" L: "+leagueApiData.losses);
-            rank3LP.setText(leagueApiData.leaguePoints + " LP");
-            if(leagueApiData.tierImageID != 0) {
-                Picasso.get().load(leagueApiData.tierImageID)
-                        .error(R.drawable.ic_launcher_background)
-                        .placeholder(R.drawable.ic_launcher_foreground)
-                        .into(rank3);
+            if(leagueApiData.tier!=null) {
+                rank3Text.setText(leagueApiData.tier + " " + leagueApiData.rank);
+                wlRatio3.setText("W: " + leagueApiData.wins + " L: " + leagueApiData.losses);
+                rank3LP.setText(leagueApiData.leaguePoints + " LP");
+                if (leagueApiData.tierImageID != 0) {
+                    Picasso.get().load(leagueApiData.tierImageID)
+                            .error(R.drawable.ic_launcher_background)
+                            .placeholder(R.drawable.ic_launcher_foreground)
+                            .into(rank3);
+                }
             }
         });
     }

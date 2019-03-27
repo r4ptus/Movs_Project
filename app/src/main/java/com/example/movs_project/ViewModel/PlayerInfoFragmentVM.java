@@ -31,6 +31,7 @@ public class PlayerInfoFragmentVM extends ViewModel {
         DRAFT,
         BLIND,
         BLIND_3,
+        Default,
         ARAM;
 
         public static QueueType fromInteger(int x) {
@@ -49,8 +50,10 @@ public class PlayerInfoFragmentVM extends ViewModel {
                     return BLIND_3;
                 case 450:
                     return ARAM;
+                    default:
+                        return Default;
+
             }
-            return null;
         }
     }
 

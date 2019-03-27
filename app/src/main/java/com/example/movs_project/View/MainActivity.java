@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.On
         setContentView(R.layout.activity_main);
 
        this.getSupportActionBar().hide();
+
     }
 
     @Override
