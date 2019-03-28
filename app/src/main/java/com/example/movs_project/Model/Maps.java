@@ -14,9 +14,11 @@ public class Maps {
     public static HashMap<Integer,String> masteriesName = new HashMap<>();
     public static HashMap<String,Integer> tiers = new HashMap<>();
     public static String PERKS_URL ="http://ddragon.leagueoflegends.com/cdn/img/perk-images/StatMods/";
-    public static String SPELLS_URL = "http://ddragon.leagueoflegends.com/cdn/9.6.1/img/spell/";
-    public static String CHAMPION_URL = "http://ddragon.leagueoflegends.com/cdn/9.6.1/img/champion/";
+    public static String SPELLS_URL = "http://ddragon.leagueoflegends.com/cdn/";//9.6.1/img/spell/";
+    public static String CHAMPION_URL = "http://ddragon.leagueoflegends.com/cdn/";//9.6.1/img/champion/";
     public static String MASTERY_URL = "http://ddragon.leagueoflegends.com/cdn/img/";
+    public static String BASE_URL = "http://ddragon.leagueoflegends.com/cdn/";//9.6.1/data/en_US/";
+    public static String VERSION;
 
     public Maps(){
         initMaps();
@@ -24,7 +26,7 @@ public class Maps {
 
     private void initMaps(){
         //Summoner Spells
-        spells.put(21,"SummonerBarrier.png");
+        /*spells.put(21,"SummonerBarrier.png");
         spells.put(1,"SummonerBoost.png");
         spells.put(14,"SummonerDot.png");
         spells.put(3,"SummonerExhaust.png");
@@ -34,7 +36,7 @@ public class Maps {
         spells.put(13,"SummonerMana.png");
         spells.put(11,"SummonerSmite.png");
         spells.put(32,"SummonerSnowball.png");
-        spells.put(12,"SummonerTeleport.png");
+        spells.put(12,"SummonerTeleport.png");*/
 
         //Perks
         perks.put(5008,"StatModsAdaptiveForceIcon.png");

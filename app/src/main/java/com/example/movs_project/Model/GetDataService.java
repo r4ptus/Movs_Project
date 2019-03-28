@@ -6,6 +6,7 @@ import com.example.movs_project.Model.ChampionsApi.Champions;
 import com.example.movs_project.Model.LeagueApi.LeagueApiData;
 import com.example.movs_project.Model.MasteryApi.MasteriesApiData;
 import com.example.movs_project.Model.SpectatorApi.SpectatorApiData;
+import com.example.movs_project.Model.SpellApi.SpellApiData;
 import com.example.movs_project.Model.SummonerApi.SummonerApiData;
 
 import java.util.List;
@@ -37,5 +38,11 @@ public interface GetDataService {
 
     @GET()
     Call<List<MasteriesApiData>> getMasteries(@Url String s);
+
+    @GET()
+    Call<SpellApiData> getSpells(@Url String s);
+
+    @GET()
+    Call<List<String>> getVersion(@Url String s);
 
 }

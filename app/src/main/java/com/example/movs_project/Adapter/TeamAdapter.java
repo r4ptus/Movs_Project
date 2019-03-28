@@ -44,25 +44,25 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.PlayerViewHold
         holder.summonerName.setText(dataList.get(position).getSummonerName());
 
         if(!TextUtils.isEmpty(dataList.get(position).getPlayerIcon()+"")){
-            Picasso.get().load("http://ddragon.leagueoflegends.com/cdn/9.6.1/img/profileicon/" + dataList.get(position).getPlayerIcon() + ".png")
+            Picasso.get().load("http://ddragon.leagueoflegends.com/cdn/"+Maps.VERSION+"/img/profileicon/" + dataList.get(position).getPlayerIcon() + ".png")
                     .error(R.drawable.ic_launcher_background)
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .into(holder.playerIcon);
         }
         if(!TextUtils.isEmpty(dataList.get(position).getChampionIcon()+"")){
-            Picasso.get().load(Maps.CHAMPION_URL + Maps.champions.get(dataList.get(position).getChampionIcon()))
+            Picasso.get().load(Maps.CHAMPION_URL + Maps.VERSION +"/img/champion/"+ Maps.champions.get(dataList.get(position).getChampionIcon()))
                     .error(R.drawable.ic_launcher_background)
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .into(holder.championIcon);
         }
         if(!TextUtils.isEmpty(dataList.get(position).getSpell1()+"")){
-            Picasso.get().load(Maps.SPELLS_URL + Maps.spells.get(dataList.get(position).getSpell1()))
+            Picasso.get().load(Maps.SPELLS_URL + Maps.VERSION +"/img/spell/"+ Maps.spells.get(dataList.get(position).getSpell1()))
                     .error(R.drawable.ic_launcher_background)
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .into(holder.spellOne);
         }
         if(!TextUtils.isEmpty(dataList.get(position).getSpell2()+"")){
-            Picasso.get().load(Maps.SPELLS_URL + Maps.spells.get(dataList.get(position).getSpell2()))
+            Picasso.get().load(Maps.SPELLS_URL + Maps.VERSION +"/img/spell/"+ Maps.spells.get(dataList.get(position).getSpell2()))
                     .error(R.drawable.ic_launcher_background)
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .into(holder.spellTwo);

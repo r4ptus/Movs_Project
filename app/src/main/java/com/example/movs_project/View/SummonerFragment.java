@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.movs_project.Model.LeagueApi.LeagueApiData;
+import com.example.movs_project.Model.Maps;
 import com.example.movs_project.Model.Player;
 import com.example.movs_project.R;
 import com.example.movs_project.ViewModel.SummonerFragmentVM;
@@ -138,7 +139,7 @@ public class SummonerFragment extends Fragment {
                 .into(rank3);
 
         if(!TextUtils.isEmpty(player.getPlayerIcon()+"")) {
-            Picasso.get().load("http://ddragon.leagueoflegends.com/cdn/9.6.1/img/profileicon/" + player.getPlayerIcon() + ".png")
+            Picasso.get().load("http://ddragon.leagueoflegends.com/cdn/"+ Maps.VERSION +"/img/profileicon/" + player.getPlayerIcon() + ".png")
                     .error(R.drawable.ic_launcher_background)
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .into(playerIcon);

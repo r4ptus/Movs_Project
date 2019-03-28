@@ -150,13 +150,13 @@ public class PlayerInfoFragment extends Fragment {
 
 
         if(!TextUtils.isEmpty(player.getPlayerIcon()+"")){
-            Picasso.get().load("http://ddragon.leagueoflegends.com/cdn/9.6.1/img/profileicon/" + player.getPlayerIcon() + ".png")
+            Picasso.get().load("http://ddragon.leagueoflegends.com/cdn/"+Maps.VERSION+"/img/profileicon/" + player.getPlayerIcon() + ".png")
                     .error(R.drawable.ic_launcher_background)
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .into(playerIcon);
         }
         if(!TextUtils.isEmpty(player.getChampionIcon()+"")){
-            Picasso.get().load(Maps.CHAMPION_URL + Maps.champions.get(player.getChampionIcon()))
+            Picasso.get().load(Maps.CHAMPION_URL + Maps.VERSION +"/img/champion/" + Maps.champions.get(player.getChampionIcon()))
                     .error(R.drawable.ic_launcher_background)
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .into(championIcon);

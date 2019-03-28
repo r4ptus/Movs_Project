@@ -13,6 +13,8 @@ import com.example.movs_project.Model.SpectatorApi.Participant;
 import com.example.movs_project.Model.Player;
 import com.example.movs_project.Model.RetrofitClientInstance;
 import com.example.movs_project.Model.SpectatorApi.SpectatorApiData;
+import com.example.movs_project.Model.SpellApi.Spell;
+import com.example.movs_project.Model.SpellApi.SpellApiData;
 import com.example.movs_project.Model.SummonerApi.SummonerApiData;
 
 import java.util.ArrayList;
@@ -125,7 +127,7 @@ public class SearchFragmentVM extends ViewModel {
         }
     }
     public void getChampions() {
-        Call<Champions> call = service.getChampions(RetrofitClientInstance.BASE_URL+"champion.json");
+        Call<Champions> call = service.getChampions(Maps.BASE_URL +Maps.VERSION+"/data/en_US/champion.json");
         call.enqueue(new Callback<Champions>() {
 
             @Override
@@ -147,8 +149,52 @@ public class SearchFragmentVM extends ViewModel {
             }
         });
     }
+    public void getVersions(){
+        Call<List<String>> call = service.getVersion("https://ddragon.leagueoflegends.com/api/versions.json");
+        call.enqueue(new Callback<List<String>>() {
+            @Override
+            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
+                if(response.isSuccessful())
+                    Maps.VERSION = response.body().get(0);
+                    getChampions();
+                    getMasteries();
+                    getSpells();
+
+                Log.d(TAG,"get newest Version");
+            }
+
+            @Override
+            public void onFailure(Call<List<String>> call, Throwable t) {
+
+            }
+        });
+    }
+    public void getSpells() {
+        Call<SpellApiData> call = service.getSpells(Maps.BASE_URL + Maps.VERSION +"/data/en_US/summoner.json");
+        call.enqueue(new Callback<SpellApiData>() {
+
+            @Override
+            public void onResponse(Call<SpellApiData> call, Response<SpellApiData> response) {
+
+                if(response.isSuccessful())
+                {
+                    List<Spell> tmp = response.body().getSpells();
+                    for (Spell c : tmp) {
+                        Maps.spells.put(c.key,c.image.full);
+                    }
+                    Log.d(TAG,"loaded spells");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SpellApiData> call, Throwable t) {
+
+            }
+        });
+    }
+
     public void getMasteries() {
-        Call<List<MasteriesApiData>> call = service.getMasteries(RetrofitClientInstance.BASE_URL+"runesReforged.json");
+        Call<List<MasteriesApiData>> call = service.getMasteries(Maps.BASE_URL + Maps.VERSION +"/data/en_US/runesReforged.json");
         call.enqueue(new Callback<List<MasteriesApiData>>() {
 
             @Override

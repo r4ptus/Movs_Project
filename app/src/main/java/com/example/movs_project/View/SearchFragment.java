@@ -91,38 +91,34 @@ public class SearchFragment extends Fragment {
 
         searchFragmentVM = ViewModelProviders.of(requireActivity()).get(SearchFragmentVM.class);
 
-        searchFragmentVM.getChampions();
-        searchFragmentVM.getMasteries();
+        searchFragmentVM.getVersions();
 
         Button button = view.findViewById(R.id.searchButton);
         final EditText text = view.findViewById(R.id.searchText);
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!TextUtils.isEmpty(text.getText().toString())){
-                    String tmp = text.getText().toString();
-                    searchFragmentVM.getSummonerApiData(tmp);
+        button.setOnClickListener(v -> {
+            if(!TextUtils.isEmpty(text.getText().toString())){
+                String tmp = text.getText().toString();
+                searchFragmentVM.getSummonerApiData(tmp);
 
-                    final Bundle bundle = new Bundle();
+                final Bundle bundle = new Bundle();
 
-                    searchFragmentVM.isLiveMatch.observe(getViewLifecycleOwner(), isLiveMatch -> {
-                        switch (isLiveMatch){
-                            case YES:
-                                bundle.putSerializable("teamB",searchFragmentVM.teamB);
-                                bundle.putSerializable("teamR",searchFragmentVM.teamR);
-                                Navigation.findNavController(view).navigate(R.id.action_searchFragment_to_gameInfoFragment,bundle);
-                                break;
-                            case NO:
-                                bundle.putSerializable("player",searchFragmentVM.player);
-                                Navigation.findNavController(view).navigate(R.id.action_searchFragment_to_summonerFragment,bundle);
-                                break;
-                        }
-                    });
-                }
-                else{
-                    Toast.makeText(getContext(),"pls enter a Summonername",Toast.LENGTH_SHORT).show();
-                }
+                searchFragmentVM.isLiveMatch.observe(getViewLifecycleOwner(), isLiveMatch -> {
+                    switch (isLiveMatch){
+                        case YES:
+                            bundle.putSerializable("teamB",searchFragmentVM.teamB);
+                            bundle.putSerializable("teamR",searchFragmentVM.teamR);
+                            Navigation.findNavController(view).navigate(R.id.action_searchFragment_to_gameInfoFragment,bundle);
+                            break;
+                        case NO:
+                            bundle.putSerializable("player",searchFragmentVM.player);
+                            Navigation.findNavController(view).navigate(R.id.action_searchFragment_to_summonerFragment,bundle);
+                            break;
+                    }
+                });
+            }
+            else{
+                Toast.makeText(getContext(),"pls enter a Summonername",Toast.LENGTH_SHORT).show();
             }
         });
 
