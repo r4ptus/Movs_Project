@@ -114,7 +114,6 @@ public class SearchFragment extends Fragment implements OnBackPressedCallback {
             mLastClickTime = SystemClock.elapsedRealtime();
 
             if(!TextUtils.isEmpty(text.getText().toString())){
-                if(searchFragmentVM.completeChampions && searchFragmentVM.completeMasteries && searchFragmentVM.completeSpells) {
                     if(searchFragmentVM.isLiveMatch.getValue() != SearchFragmentVM.IsLiveMatch.RUNNING) {
                         String tmp = text.getText().toString();
 
@@ -137,10 +136,6 @@ public class SearchFragment extends Fragment implements OnBackPressedCallback {
                                     Toast.makeText(getContext(), searchFragmentVM.errorMessage, Toast.LENGTH_SHORT).show();
                             }
                         });
-                    }
-                }
-                else{
-                    Toast.makeText(getContext(),"pls wait for Data to be received, try again shortly",Toast.LENGTH_SHORT).show();
                 }
             }
             else{

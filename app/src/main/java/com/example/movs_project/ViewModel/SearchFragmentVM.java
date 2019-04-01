@@ -2,23 +2,14 @@ package com.example.movs_project.ViewModel;
 
 import android.util.Log;
 
-import com.example.movs_project.Model.ChampionsApi.Champion;
-import com.example.movs_project.Model.ChampionsApi.Champions;
 import com.example.movs_project.Model.GetDataService;
-import com.example.movs_project.Model.Maps;
-import com.example.movs_project.Model.MasteryApi.MasteriesApiData;
-import com.example.movs_project.Model.MasteryApi.Rune;
-import com.example.movs_project.Model.MasteryApi.Slot;
 import com.example.movs_project.Model.SpectatorApi.Participant;
 import com.example.movs_project.Model.Player;
 import com.example.movs_project.Model.RetrofitClientInstance;
 import com.example.movs_project.Model.SpectatorApi.SpectatorApiData;
-import com.example.movs_project.Model.SpellApi.Spell;
-import com.example.movs_project.Model.SpellApi.SpellApiData;
 import com.example.movs_project.Model.SummonerApi.SummonerApiData;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -29,14 +20,11 @@ import retrofit2.Response;
 
 public class SearchFragmentVM extends ViewModel {
 
-    SummonerApiData summonerApiData;
+    private SummonerApiData summonerApiData;
 
-    public boolean completeChampions = false;
-    public boolean completeMasteries = false;
-    public boolean completeSpells = false;
     public String errorMessage = "";
 
-    final static String TAG = SearchFragmentVM.class.getSimpleName();
+    private final static String TAG = SearchFragmentVM.class.getSimpleName();
 
     public enum IsLiveMatch{
         YES,
@@ -48,13 +36,12 @@ public class SearchFragmentVM extends ViewModel {
 
     public final MutableLiveData<IsLiveMatch> isLiveMatch = new MutableLiveData<>();
 
-
     public Player player;
 
     public ArrayList<Player> teamB ;
     public ArrayList<Player> teamR ;
 
-    GetDataService service = RetrofitClientInstance.getRetrofitInstanceLOL().create(GetDataService.class);
+    private GetDataService service = RetrofitClientInstance.getRetrofitInstanceLOL().create(GetDataService.class);
 
     public SearchFragmentVM(){
         teamR = new ArrayList<>();
