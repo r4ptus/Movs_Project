@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.movs_project.Model.LeagueApi.LeagueApiData;
 import com.example.movs_project.Model.Maps;
@@ -186,6 +187,8 @@ public class SummonerFragment extends Fragment {
                 }
             }
         });
+
+        summonerFragmentVM.errorMessage.observe(this, s -> Toast.makeText(getContext(),s,Toast.LENGTH_SHORT).show());
     }
 
     // TODO: Rename method, update argument and hook method into UI event

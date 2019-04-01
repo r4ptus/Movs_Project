@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.movs_project.Model.Maps;
 import com.example.movs_project.Model.Player;
@@ -221,6 +222,7 @@ public class PlayerInfoFragment extends Fragment {
         playerInfoFragmentVM.player.observe(this,player1 -> wlRatio.setText(player1.getWlRatio()));
         playerInfoFragmentVM.player.observe(this,player1 -> championPoints.setText("Points: " + player1.getChampionPoints()));
         playerInfoFragmentVM.player.observe(this,player1 -> championMastery.setText("Mastery: "+ player1.getChampionLvl()));
+        playerInfoFragmentVM.errorMessage.observe(this, s -> Toast.makeText(getContext(),s,Toast.LENGTH_SHORT).show());
 
     }
 

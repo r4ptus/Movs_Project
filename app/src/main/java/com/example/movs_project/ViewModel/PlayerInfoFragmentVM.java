@@ -22,6 +22,8 @@ public class PlayerInfoFragmentVM extends ViewModel {
 
     public MutableLiveData<Player> player = new MutableLiveData<>();
 
+    public MutableLiveData<String> errorMessage = new MutableLiveData<>();
+
     private static String TAG = PlayerInfoFragmentVM.class.getSimpleName();
 
     enum QueueType{
@@ -74,6 +76,9 @@ public class PlayerInfoFragmentVM extends ViewModel {
                     tmp.setChampionLvl(response.body().championLevel);
                     player.setValue(tmp);
                     Log.d(TAG,"loaded ChampionMasterypoints");
+                }
+                else{
+                    errorMessage.setValue(response.message());
                 }
             }
 
@@ -170,6 +175,9 @@ public class PlayerInfoFragmentVM extends ViewModel {
 
 
                     Log.d(TAG,"loaded LeagueData");
+                }
+                else{
+                    errorMessage.setValue(response.message());
                 }
             }
 

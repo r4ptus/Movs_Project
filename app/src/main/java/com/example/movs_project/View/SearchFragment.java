@@ -4,13 +4,14 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
+import android.os.SystemClock;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +20,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.movs_project.Model.Maps;
 import com.example.movs_project.R;
 import com.example.movs_project.ViewModel.SearchFragmentVM;
 
@@ -32,11 +32,14 @@ import com.example.movs_project.ViewModel.SearchFragmentVM;
  * Use the {@link SearchFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SearchFragment extends Fragment {
+public class SearchFragment extends Fragment implements OnBackPressedCallback {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    //for preventing double click
+    private long mLastClickTime = 0;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -74,6 +77,15 @@ public class SearchFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        // This callback will only be called when MyFragment is at least Started.
+        requireActivity().addOnBackPressedCallback(this, new OnBackPressedCallback() {
+            @Override
+            public boolean handleOnBackPressed() {
+                return true; // return true if event was handled
+            }
+        });
+
+
     }
 
     @Override
@@ -87,44 +99,54 @@ public class SearchFragment extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
 
-        Maps m = new Maps();
-
         searchFragmentVM = ViewModelProviders.of(requireActivity()).get(SearchFragmentVM.class);
 
-        searchFragmentVM.getVersions();
 
         Button button = view.findViewById(R.id.searchButton);
         final EditText text = view.findViewById(R.id.searchText);
 
         button.setOnClickListener(v -> {
+
+            // mis-clicking prevention, using threshold of 1000 ms
+            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                return;
+            }
+            mLastClickTime = SystemClock.elapsedRealtime();
+
             if(!TextUtils.isEmpty(text.getText().toString())){
-                String tmp = text.getText().toString();
-                searchFragmentVM.getSummonerApiData(tmp);
+                if(searchFragmentVM.completeChampions && searchFragmentVM.completeMasteries && searchFragmentVM.completeSpells) {
+                    if(searchFragmentVM.isLiveMatch.getValue() != SearchFragmentVM.IsLiveMatch.RUNNING) {
+                        String tmp = text.getText().toString();
 
-                final Bundle bundle = new Bundle();
+                        searchFragmentVM.getSummonerApiData(tmp);
 
-                searchFragmentVM.isLiveMatch.observe(getViewLifecycleOwner(), isLiveMatch -> {
-                    switch (isLiveMatch){
-                        case YES:
-                            bundle.putSerializable("teamB",searchFragmentVM.teamB);
-                            bundle.putSerializable("teamR",searchFragmentVM.teamR);
-                            Navigation.findNavController(view).navigate(R.id.action_searchFragment_to_gameInfoFragment,bundle);
-                            break;
-                        case NO:
-                            bundle.putSerializable("player",searchFragmentVM.player);
-                            Navigation.findNavController(view).navigate(R.id.action_searchFragment_to_summonerFragment,bundle);
-                            break;
+                        final Bundle bundle = new Bundle();
+
+                        searchFragmentVM.isLiveMatch.observe(getViewLifecycleOwner(), isLiveMatch -> {
+                            switch (isLiveMatch) {
+                                case YES:
+                                    bundle.putSerializable("teamB", searchFragmentVM.teamB);
+                                    bundle.putSerializable("teamR", searchFragmentVM.teamR);
+                                    Navigation.findNavController(view).navigate(R.id.action_searchFragment_to_gameInfoFragment, bundle);
+                                    break;
+                                case NO:
+                                    bundle.putSerializable("player", searchFragmentVM.player);
+                                    Navigation.findNavController(view).navigate(R.id.action_searchFragment_to_summonerFragment, bundle);
+                                    break;
+                                case ERROR:
+                                    Toast.makeText(getContext(), searchFragmentVM.errorMessage, Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
-                });
+                }
+                else{
+                    Toast.makeText(getContext(),"pls wait for Data to be received, try again shortly",Toast.LENGTH_SHORT).show();
+                }
             }
             else{
                 Toast.makeText(getContext(),"pls enter a Summonername",Toast.LENGTH_SHORT).show();
             }
         });
-
-        //view.findViewById(R.id.searchButton).setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_searchFragment_to_gameInfoFragment,null));
-
-
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -149,6 +171,11 @@ public class SearchFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public boolean handleOnBackPressed() {
+        return false;
     }
 
     /**

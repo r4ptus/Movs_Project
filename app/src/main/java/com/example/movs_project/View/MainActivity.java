@@ -9,7 +9,7 @@ import android.view.Window;
 
 import com.example.movs_project.R;
 
-public class MainActivity extends AppCompatActivity implements SearchFragment.OnFragmentInteractionListener, GameInfoFragment.OnFragmentInteractionListener, PlayerInfoFragment.OnFragmentInteractionListener, SummonerFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements Splash.OnFragmentInteractionListener,SearchFragment.OnFragmentInteractionListener, GameInfoFragment.OnFragmentInteractionListener, PlayerInfoFragment.OnFragmentInteractionListener, SummonerFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

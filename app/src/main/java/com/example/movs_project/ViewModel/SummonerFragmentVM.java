@@ -27,6 +27,7 @@ public class SummonerFragmentVM extends ViewModel {
     public MutableLiveData<LeagueApiData> soloQ = new MutableLiveData<>();
     public MutableLiveData<LeagueApiData> flex5 = new MutableLiveData<>();
     public MutableLiveData<LeagueApiData> flex3 = new MutableLiveData<>();
+    public MutableLiveData<String> errorMessage = new MutableLiveData<>();
 
     public void setPlayer(Player player) {
         this.player.setValue(player);
@@ -60,6 +61,9 @@ public class SummonerFragmentVM extends ViewModel {
                         }
                     }
                     Log.d(TAG,"loaded LeagueData");
+                }
+                else {
+                    errorMessage.setValue(response.message());
                 }
             }
 
