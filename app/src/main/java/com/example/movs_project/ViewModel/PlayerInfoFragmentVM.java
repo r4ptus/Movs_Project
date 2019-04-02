@@ -21,7 +21,7 @@ import retrofit2.Response;
 public class PlayerInfoFragmentVM extends ViewModel {
 
     public MutableLiveData<Player> player = new MutableLiveData<>();
-
+    public MutableLiveData<String> gameType = new MutableLiveData<>();
     public MutableLiveData<String> errorMessage = new MutableLiveData<>();
 
     private static String TAG = PlayerInfoFragmentVM.class.getSimpleName();
@@ -106,6 +106,7 @@ public class PlayerInfoFragmentVM extends ViewModel {
                                     player.setValue(tmp);
                                 }
                             }
+                            gameType.setValue("Solo Q");
                             break;
                         case RANKED_FLEX:
                             for (LeagueApiData l: response.body()) {
@@ -116,6 +117,7 @@ public class PlayerInfoFragmentVM extends ViewModel {
                                     player.setValue(tmp);
                                 }
                             }
+                            gameType.setValue("Ranked Flex 5vs5");
                             break;
                         case RANKED_3:
                             for (LeagueApiData l: response.body()) {
@@ -126,6 +128,7 @@ public class PlayerInfoFragmentVM extends ViewModel {
                                     player.setValue(tmp);
                                 }
                             }
+                            gameType.setValue("Ranked Flex 3vs3");
                             break;
                         case DRAFT:
                             for (LeagueApiData l: response.body()) {
@@ -136,6 +139,7 @@ public class PlayerInfoFragmentVM extends ViewModel {
                                     player.setValue(tmp);
                                 }
                             }
+                            gameType.setValue("Normal Draft");
                             break;
                         case BLIND:
                             for (LeagueApiData l: response.body()) {
@@ -146,6 +150,7 @@ public class PlayerInfoFragmentVM extends ViewModel {
                                     player.setValue(tmp);
                                 }
                             }
+                            gameType.setValue("Normal Blind");
                             break;
                         case BLIND_3:
                             for (LeagueApiData l: response.body()) {
@@ -156,6 +161,7 @@ public class PlayerInfoFragmentVM extends ViewModel {
                                     player.setValue(tmp);
                                 }
                             }
+                            gameType.setValue("Twisted Treeline");
                             break;
                         case ARAM:
                             for (LeagueApiData l: response.body()) {
@@ -166,10 +172,12 @@ public class PlayerInfoFragmentVM extends ViewModel {
                                     player.setValue(tmp);
                                 }
                             }
+                            gameType.setValue(player.getValue().getGameType());
                             break;
                             default:
                                 player.getValue().setRank("Unranked");
                                 player.getValue().setWlRatio("");
+                                gameType.setValue(player.getValue().getGameType());
                                 break;
                     }
 
@@ -183,7 +191,7 @@ public class PlayerInfoFragmentVM extends ViewModel {
 
             @Override
             public void onFailure(Call<List<LeagueApiData>> call, Throwable t) {
-
+                errorMessage.setValue(t.getMessage());
             }
         });
 

@@ -1,5 +1,6 @@
 package com.example.movs_project.ViewModel;
 
+import android.os.CountDownTimer;
 import android.util.Log;
 
 import com.example.movs_project.Model.ChampionsApi.Champion;
@@ -14,6 +15,8 @@ import com.example.movs_project.Model.SpellApi.Spell;
 import com.example.movs_project.Model.SpellApi.SpellApiData;
 
 import java.util.List;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -23,6 +26,8 @@ import retrofit2.Response;
 
 public class SplashVM extends ViewModel {
 
+    public MutableLiveData<Integer> counter = new MutableLiveData<>();
+
     public static final String TAG = SplashVM.class.getSimpleName();
 
     public MutableLiveData<Boolean> completeChampions = new MutableLiveData<>();
@@ -30,6 +35,10 @@ public class SplashVM extends ViewModel {
     public MutableLiveData<Boolean> completeSpells = new MutableLiveData<>();
 
     GetDataService service = RetrofitClientInstance.getRetrofitInstanceLOL().create(GetDataService.class);
+
+    SplashVM(){
+        counter.setValue(0);
+    }
 
     private void getChampions() {
         Call<Champions> call = service.getChampions(Maps.BASE_URL +Maps.VERSION+"/data/en_US/champion.json");
@@ -51,7 +60,21 @@ public class SplashVM extends ViewModel {
 
             @Override
             public void onFailure(Call<Champions> call, Throwable t) {
+                if(counter.getValue()<5){
+                    new CountDownTimer(2000,1000){
 
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            counter.setValue(counter.getValue()+1);
+                            getChampions();
+                        }
+                    }.start();
+                }
             }
         });
     }
@@ -71,7 +94,21 @@ public class SplashVM extends ViewModel {
 
             @Override
             public void onFailure(Call<List<String>> call, Throwable t) {
+                if(counter.getValue()<5){
+                    new CountDownTimer(2000,1000){
 
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            counter.setValue(counter.getValue()+1);
+                            getVersions();
+                        }
+                    }.start();
+                }
             }
         });
     }
@@ -96,7 +133,21 @@ public class SplashVM extends ViewModel {
 
             @Override
             public void onFailure(Call<SpellApiData> call, Throwable t) {
+                if(counter.getValue()<5){
+                    new CountDownTimer(2000,1000){
 
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            counter.setValue(counter.getValue()+1);
+                            getSpells();
+                        }
+                    }.start();
+                }
             }
         });
     }
@@ -127,7 +178,21 @@ public class SplashVM extends ViewModel {
 
             @Override
             public void onFailure(Call<List<MasteriesApiData>> call, Throwable t) {
+                if(counter.getValue()<5){
+                    new CountDownTimer(2000,1000){
 
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            counter.setValue(counter.getValue()+1);
+                            getMasteries();
+                        }
+                    }.start();
+                }
             }
         });
     }

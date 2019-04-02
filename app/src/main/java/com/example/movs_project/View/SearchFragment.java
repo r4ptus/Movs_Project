@@ -133,7 +133,7 @@ public class SearchFragment extends Fragment implements OnBackPressedCallback {
                                     Navigation.findNavController(view).navigate(R.id.action_searchFragment_to_summonerFragment, bundle);
                                     break;
                                 case ERROR:
-                                    Toast.makeText(getContext(), searchFragmentVM.errorMessage, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), searchFragmentVM.errorMessage, Toast.LENGTH_LONG).show();
                             }
                         });
                 }

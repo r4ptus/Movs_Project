@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.movs_project.Model.Maps;
 import com.example.movs_project.R;
@@ -98,6 +99,12 @@ public class Splash extends Fragment {
         splashVM.completeChampions.observe(this, aBoolean -> {
             if(splashVM.completeMasteries.getValue() && aBoolean && splashVM.completeSpells.getValue())
                 Navigation.findNavController(view).navigate(R.id.action_splash_to_searchFragment);
+        });
+
+        splashVM.counter.observe(this, integer -> {
+            if(integer>=5){
+                Toast.makeText(getContext(),"Pls check your internet connection, restart",Toast.LENGTH_LONG).show();
+            }
         });
 
     }

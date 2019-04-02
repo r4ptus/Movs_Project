@@ -30,6 +30,7 @@ public class Player implements Serializable {
     private int subMastery2;
     private int queueType;
     private int championLvl;
+    private String gameType;
 
     public String getId(){return id;}
 
@@ -195,6 +196,10 @@ public class Player implements Serializable {
         this.championLvl = championLvl;
     }
 
+    public String getGameType() {
+        return gameType;
+    }
+
     public Player(String id, String name, int playerIcon)
     {
         this.id = id;
@@ -202,7 +207,7 @@ public class Player implements Serializable {
         this.playerIcon = playerIcon;
     }
 
-    public Player(String id,String summonerName, String rank, String wlRatio, Long championPoints, int playerIcon, int championIcon, int spell1, int spell2, int primaryMastery, int primaryMastery1, int primaryMastery2, int primaryMastery3, int primaryMastery4, int perk1, int perk2, int perk3, int subMastery, int subMastery1, int subMastery2,int queueType) {
+    public Player(String id,String summonerName, String rank, String wlRatio, Long championPoints, int playerIcon, int championIcon, int spell1, int spell2, int primaryMastery, int primaryMastery1, int primaryMastery2, int primaryMastery3, int primaryMastery4, int perk1, int perk2, int perk3, int subMastery, int subMastery1, int subMastery2,int queueType,String gameType) {
         this.id = id;
         this.summonerName = summonerName;
         this.rank = rank;
@@ -224,6 +229,7 @@ public class Player implements Serializable {
         this.subMastery1 = subMastery1;
         this.subMastery2 = subMastery2;
         this.queueType = queueType;
+        this.gameType = gameType;
     }
 
     @Override

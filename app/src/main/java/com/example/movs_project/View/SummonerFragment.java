@@ -124,25 +124,25 @@ public class SummonerFragment extends Fragment {
         rank3Text.setText("UNRANKED");
 
         Picasso.get().load(R.drawable.unranked)
-                .error(R.drawable.ic_launcher_background)
-                .placeholder(R.drawable.ic_launcher_foreground)
+                .error(R.drawable.unranked)
+                .placeholder(R.drawable.unranked)
                 .into(rankQ);
 
         Picasso.get().load(R.drawable.unranked)
-                .error(R.drawable.ic_launcher_background)
-                .placeholder(R.drawable.ic_launcher_foreground)
+                .error(R.drawable.unranked)
+                .placeholder(R.drawable.unranked)
                 .into(rank5);
 
 
         Picasso.get().load(R.drawable.unranked)
-                .error(R.drawable.ic_launcher_background)
-                .placeholder(R.drawable.ic_launcher_foreground)
+                .error(R.drawable.unranked)
+                .placeholder(R.drawable.unranked)
                 .into(rank3);
 
         if(!TextUtils.isEmpty(player.getPlayerIcon()+"")) {
             Picasso.get().load("http://ddragon.leagueoflegends.com/cdn/"+ Maps.VERSION +"/img/profileicon/" + player.getPlayerIcon() + ".png")
-                    .error(R.drawable.ic_launcher_background)
-                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .error(R.drawable.placeholder)
+                    .placeholder(R.drawable.placeholder)
                     .into(playerIcon);
         }
 
@@ -155,8 +155,8 @@ public class SummonerFragment extends Fragment {
                         rankQLP.setText(leagueApiData.leaguePoints + " LP");
                         if (leagueApiData.tierImageID != 0) {
                             Picasso.get().load(leagueApiData.tierImageID)
-                                    .error(R.drawable.ic_launcher_background)
-                                    .placeholder(R.drawable.ic_launcher_foreground)
+                                    .error(R.drawable.unranked)
+                                    .placeholder(R.drawable.unranked)
                                     .into(rankQ);
                         }
                     }
@@ -168,8 +168,8 @@ public class SummonerFragment extends Fragment {
                         rank5LP.setText(leagueApiData.leaguePoints + " LP");
                         if (leagueApiData.tierImageID != 0) {
                             Picasso.get().load(leagueApiData.tierImageID)
-                                    .error(R.drawable.ic_launcher_background)
-                                    .placeholder(R.drawable.ic_launcher_foreground)
+                                    .error(R.drawable.unranked)
+                                    .placeholder(R.drawable.unranked)
                                     .into(rank5);
                         }
                     }
@@ -181,14 +181,14 @@ public class SummonerFragment extends Fragment {
                 rank3LP.setText(leagueApiData.leaguePoints + " LP");
                 if (leagueApiData.tierImageID != 0) {
                     Picasso.get().load(leagueApiData.tierImageID)
-                            .error(R.drawable.ic_launcher_background)
-                            .placeholder(R.drawable.ic_launcher_foreground)
+                            .error(R.drawable.unranked)
+                            .placeholder(R.drawable.unranked)
                             .into(rank3);
                 }
             }
         });
 
-        summonerFragmentVM.errorMessage.observe(this, s -> Toast.makeText(getContext(),s,Toast.LENGTH_SHORT).show());
+        summonerFragmentVM.errorMessage.observe(this, s -> Toast.makeText(getContext(),s,Toast.LENGTH_LONG).show());
     }
 
     // TODO: Rename method, update argument and hook method into UI event

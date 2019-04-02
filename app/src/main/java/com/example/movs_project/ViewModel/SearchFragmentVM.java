@@ -61,14 +61,17 @@ public class SearchFragmentVM extends ViewModel {
                     getSpectator();
                 }
                 else {
-                    isLiveMatch.setValue(IsLiveMatch.ERROR);
                     errorMessage = response.message();
+                    isLiveMatch.setValue(IsLiveMatch.ERROR);
+
                 }
 
             }
 
             @Override
             public void onFailure(Call<SummonerApiData> call, Throwable t) {
+                errorMessage = t.getMessage();
+                isLiveMatch.setValue(IsLiveMatch.ERROR);
 
             }
         });
@@ -98,7 +101,8 @@ public class SearchFragmentVM extends ViewModel {
 
             @Override
             public void onFailure(Call<SpectatorApiData> call, Throwable t) {
-
+                errorMessage = t.getMessage();
+                isLiveMatch.setValue(IsLiveMatch.ERROR);
             }
         });
     }
@@ -115,7 +119,7 @@ public class SearchFragmentVM extends ViewModel {
                     participant.profileIconId,participant.championId,participant.spell1Id,participant.spell2Id,
                     participant.perks.perkStyle,participant.perks.perkIds.get(0),participant.perks.perkIds.get(1),participant.perks.perkIds.get(2),participant.perks.perkIds.get(3),
                     participant.perks.perkIds.get(6),participant.perks.perkIds.get(7),participant.perks.perkIds.get(8),
-                    participant.perks.perkSubStyle,participant.perks.perkIds.get(4),participant.perks.perkIds.get(5),data.gameQueueConfigId);
+                    participant.perks.perkSubStyle,participant.perks.perkIds.get(4),participant.perks.perkIds.get(5),data.gameQueueConfigId,data.gameMode);
             Log.d(TAG,"player initialised");
             if(participant.teamId == 100){
                 teamB.add(player);

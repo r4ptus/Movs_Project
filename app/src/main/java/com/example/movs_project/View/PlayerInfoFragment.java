@@ -97,6 +97,7 @@ public class PlayerInfoFragment extends Fragment {
         playerInfoFragmentVM.getRankedStats();
         playerInfoFragmentVM.getChampionPoints();
 
+        TextView mode = view.findViewById(R.id.game_mode);
         TextView name = view.findViewById(R.id.summonerName_PLayerInfo);
         TextView rank = view.findViewById(R.id.rank_PlaerInfo);
         TextView wlRatio = view.findViewById(R.id.winLose_PlayerInfo);
@@ -152,69 +153,69 @@ public class PlayerInfoFragment extends Fragment {
 
         if(!TextUtils.isEmpty(player.getPlayerIcon()+"")){
             Picasso.get().load("http://ddragon.leagueoflegends.com/cdn/"+Maps.VERSION+"/img/profileicon/" + player.getPlayerIcon() + ".png")
-                    .error(R.drawable.ic_launcher_background)
-                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .error(R.drawable.placeholder)
+                    .placeholder(R.drawable.placeholder)
                     .into(playerIcon);
         }
         if(!TextUtils.isEmpty(player.getChampionIcon()+"")){
             Picasso.get().load(Maps.CHAMPION_URL + Maps.VERSION +"/img/champion/" + Maps.champions.get(player.getChampionIcon()))
-                    .error(R.drawable.ic_launcher_background)
-                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .error(R.drawable.placeholder_all)
+                    .placeholder(R.drawable.placeholder_all)
                     .into(championIcon);
         }
         if(!TextUtils.isEmpty(player.getPrimaryMastery1()+"")){
             Picasso.get().load(Maps.MASTERY_URL + Maps.masteries.get(player.getPrimaryMastery1()))
-                    .error(R.drawable.ic_launcher_background)
-                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .error(R.drawable.placeholder_all)
+                    .placeholder(R.drawable.placeholder_all)
                     .into(mainMastery);
         }
         if(!TextUtils.isEmpty(player.getPrimaryMastery2()+"")){
             Picasso.get().load(Maps.MASTERY_URL + Maps.masteries.get(player.getPrimaryMastery2()))
-                    .error(R.drawable.ic_launcher_background)
-                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .error(R.drawable.placeholder_all)
+                    .placeholder(R.drawable.placeholder_all)
                     .into(mainMastery1);
         }
         if(!TextUtils.isEmpty(player.getPrimaryMastery3()+"")){
             Picasso.get().load(Maps.MASTERY_URL + Maps.masteries.get(player.getPrimaryMastery3()))
-                    .error(R.drawable.ic_launcher_background)
-                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .error(R.drawable.placeholder_all)
+                    .placeholder(R.drawable.placeholder_all)
                     .into(mainMastery2);
         }
         if(!TextUtils.isEmpty(player.getPrimaryMastery4()+"")){
             Picasso.get().load(Maps.MASTERY_URL + Maps.masteries.get(player.getPrimaryMastery4()))
-                    .error(R.drawable.ic_launcher_background)
-                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .error(R.drawable.placeholder_all)
+                    .placeholder(R.drawable.placeholder_all)
                     .into(mainMastery3);
         }
         if(!TextUtils.isEmpty(player.getSubMastery1()+"")){
             Picasso.get().load(Maps.MASTERY_URL + Maps.masteries.get(player.getSubMastery1()))
-                    .error(R.drawable.ic_launcher_background)
-                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .error(R.drawable.placeholder_all)
+                    .placeholder(R.drawable.placeholder_all)
                     .into(subMastery1);
         }
         if(!TextUtils.isEmpty(player.getSubMastery2()+"")){
             Picasso.get().load(Maps.MASTERY_URL + Maps.masteries.get(player.getSubMastery2()))
-                    .error(R.drawable.ic_launcher_background)
-                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .error(R.drawable.placeholder_all)
+                    .placeholder(R.drawable.placeholder_all)
                     .into(subMastery2);
         }
         if(!TextUtils.isEmpty(player.getPerk1()+"")){
             Picasso.get().load(Maps.PERKS_URL + Maps.perks.get(player.getPerk1()))
-                    .error(R.drawable.ic_launcher_background)
-                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .error(R.drawable.placeholder_all)
+                    .placeholder(R.drawable.placeholder_all)
                     .into(perk1);
         }
         if(!TextUtils.isEmpty(player.getPerk2()+"")){
             Picasso.get().load(Maps.PERKS_URL + Maps.perks.get(player.getPerk2()))
-                    .error(R.drawable.ic_launcher_background)
-                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .error(R.drawable.placeholder_all)
+                    .placeholder(R.drawable.placeholder_all)
                     .into(perk2);
         }
         if(!TextUtils.isEmpty(player.getPerk3()+"")){
             Log.d("test",Maps.PERKS_URL + Maps.perks.get(player.getPerk3()));
             Picasso.get().load(Maps.PERKS_URL + Maps.perks.get(player.getPerk3()))
-                    .error(R.drawable.ic_launcher_background)
-                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .error(R.drawable.placeholder_all)
+                    .placeholder(R.drawable.placeholder_all)
                     .into(perk3);
         }
 
@@ -222,7 +223,8 @@ public class PlayerInfoFragment extends Fragment {
         playerInfoFragmentVM.player.observe(this,player1 -> wlRatio.setText(player1.getWlRatio()));
         playerInfoFragmentVM.player.observe(this,player1 -> championPoints.setText("Points: " + player1.getChampionPoints()));
         playerInfoFragmentVM.player.observe(this,player1 -> championMastery.setText("Mastery: "+ player1.getChampionLvl()));
-        playerInfoFragmentVM.errorMessage.observe(this, s -> Toast.makeText(getContext(),s,Toast.LENGTH_SHORT).show());
+        playerInfoFragmentVM.errorMessage.observe(this, s -> Toast.makeText(getContext(),s,Toast.LENGTH_LONG).show());
+        playerInfoFragmentVM.gameType.observe(this, s -> mode.setText(s));
 
     }
 

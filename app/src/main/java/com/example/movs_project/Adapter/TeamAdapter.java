@@ -45,38 +45,38 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.PlayerViewHold
 
         if(!TextUtils.isEmpty(dataList.get(position).getPlayerIcon()+"")){
             Picasso.get().load("http://ddragon.leagueoflegends.com/cdn/"+Maps.VERSION+"/img/profileicon/" + dataList.get(position).getPlayerIcon() + ".png")
-                    .error(R.drawable.ic_launcher_background)
-                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .error(R.drawable.placeholder)
+                    .placeholder(R.drawable.placeholder)
                     .into(holder.playerIcon);
         }
         if(!TextUtils.isEmpty(dataList.get(position).getChampionIcon()+"")){
             Picasso.get().load(Maps.CHAMPION_URL + Maps.VERSION +"/img/champion/"+ Maps.champions.get(dataList.get(position).getChampionIcon()))
-                    .error(R.drawable.ic_launcher_background)
-                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .error(R.drawable.placeholder_all)
+                    .placeholder(R.drawable.placeholder_all)
                     .into(holder.championIcon);
         }
         if(!TextUtils.isEmpty(dataList.get(position).getSpell1()+"")){
             Picasso.get().load(Maps.SPELLS_URL + Maps.VERSION +"/img/spell/"+ Maps.spells.get(dataList.get(position).getSpell1()))
-                    .error(R.drawable.ic_launcher_background)
-                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .error(R.drawable.placeholder_all)
+                    .placeholder(R.drawable.placeholder_all)
                     .into(holder.spellOne);
         }
         if(!TextUtils.isEmpty(dataList.get(position).getSpell2()+"")){
             Picasso.get().load(Maps.SPELLS_URL + Maps.VERSION +"/img/spell/"+ Maps.spells.get(dataList.get(position).getSpell2()))
-                    .error(R.drawable.ic_launcher_background)
-                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .error(R.drawable.placeholder_all)
+                    .placeholder(R.drawable.placeholder_all)
                     .into(holder.spellTwo);
         }
         if(!TextUtils.isEmpty(dataList.get(position).getPrimaryMastery()+"")){
             Picasso.get().load(Maps.MASTERY_URL + Maps.masteries.get(dataList.get(position).getPrimaryMastery()))
-                    .error(R.drawable.ic_launcher_background)
-                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .error(R.drawable.placeholder_all)
+                    .placeholder(R.drawable.placeholder_all)
                     .into(holder.mainMastery);
         }
         if(!TextUtils.isEmpty(dataList.get(position).getSubMastery()+"")){
             Picasso.get().load(Maps.MASTERY_URL + Maps.masteries.get(dataList.get(position).getSubMastery()))
-                    .error(R.drawable.ic_launcher_background)
-                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .error(R.drawable.placeholder_all)
+                    .placeholder(R.drawable.placeholder_all)
                     .into(holder.subMastery);
         }
 
