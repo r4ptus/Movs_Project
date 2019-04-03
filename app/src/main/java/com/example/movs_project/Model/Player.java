@@ -31,6 +31,7 @@ public class Player implements Serializable {
     private int queueType;
     private int championLvl;
     private String gameType;
+    private int level;
 
     public String getId(){return id;}
 
@@ -200,11 +201,16 @@ public class Player implements Serializable {
         return gameType;
     }
 
-    public Player(String id, String name, int playerIcon)
+    public int getLevel() {
+        return level;
+    }
+
+    public Player(String id, String name, int playerIcon, int level)
     {
         this.id = id;
         summonerName = name;
         this.playerIcon = playerIcon;
+        this.level = level;
     }
 
     public Player(String id,String summonerName, String rank, String wlRatio, Long championPoints, int playerIcon, int championIcon, int spell1, int spell2, int primaryMastery, int primaryMastery1, int primaryMastery2, int primaryMastery3, int primaryMastery4, int perk1, int perk2, int perk3, int subMastery, int subMastery1, int subMastery2,int queueType,String gameType) {

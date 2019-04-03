@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -90,6 +91,8 @@ public class PlayerInfoFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         Player player = (Player) getArguments().getSerializable("Player");
 
+        boolean tabletSize = getResources().getBoolean(R.bool.isTablet);
+
         playerInfoFragmentVM = ViewModelProviders.of(requireActivity()).get(PlayerInfoFragmentVM.class);
 
         playerInfoFragmentVM.setPlayer(player);
@@ -112,6 +115,15 @@ public class PlayerInfoFragment extends Fragment {
         TextView perk1Text = view.findViewById(R.id.perk1Text_PlayerInfo);
         TextView perk2Text = view.findViewById(R.id.perk2Text_PlayerInfo);
         TextView perk3Text = view.findViewById(R.id.perk3Text_PlayerInfo);
+        TextView rankQText = view.findViewById(R.id.rankQ_Summoner);
+        TextView rank5Text = view.findViewById(R.id.rank5_Summoner);
+        TextView rank3Text = view.findViewById(R.id.rank3_Summoner);
+        TextView wlRatioQ = view.findViewById(R.id.wlRatioQ);
+        TextView wlRatio5 = view.findViewById(R.id.wlRatio5);
+        TextView wlRatio3 = view.findViewById(R.id.wlRatio3);
+        TextView rankQLP = view.findViewById(R.id.rankQ_LP);
+        TextView rank5LP = view.findViewById(R.id.rank5_LP);
+        TextView rank3LP = view.findViewById(R.id.rank3_LP);
 
         ImageView championIcon = view.findViewById(R.id.championIcon_PlayerInfo);
         ImageView playerIcon = view.findViewById(R.id.playerIcon_PLayerInfo);
@@ -124,32 +136,61 @@ public class PlayerInfoFragment extends Fragment {
         ImageView perk1 = view.findViewById(R.id.perk1);
         ImageView perk2 = view.findViewById(R.id.perk2);
         ImageView perk3 = view.findViewById(R.id.perk3);
+        ImageView rankQ = view.findViewById(R.id.soloQ_Summoner);
+        ImageView rank5 = view.findViewById(R.id.flex5_Summoner);
+        ImageView rank3 = view.findViewById(R.id.flex3_Summoner);
 
         if(!TextUtils.isEmpty(player.getSummonerName())){
             name.setText(player.getSummonerName());
         }
-        if(!TextUtils.isEmpty(player.getRank())){
-            rank.setText(player.getRank());
-        }
-        if(!TextUtils.isEmpty(player.getWlRatio())){
-            wlRatio.setText(player.getWlRatio());
-        }
         if(!TextUtils.isEmpty(player.getChampionPoints()+"")){
             championPoints.setText("Points: " + player.getChampionPoints());
         }
+        if(!tabletSize) {
+            if (!TextUtils.isEmpty(player.getRank())) {
+                rank.setText(player.getRank());
+            }
+            if (!TextUtils.isEmpty(player.getWlRatio())) {
+                wlRatio.setText(player.getWlRatio());
+            }
 
-        mainMasteryText.setText(Maps.masteriesName.get(player.getPrimaryMastery1()));
-        mainMastery1Text.setText(Maps.masteriesName.get(player.getPrimaryMastery2()));
-        mainMastery2Text.setText(Maps.masteriesName.get(player.getPrimaryMastery3()));
-        mainMastery3Text.setText(Maps.masteriesName.get(player.getPrimaryMastery4()));
+            mainMasteryText.setText(Maps.test.get(player.getPrimaryMastery1()).name);
+            mainMastery1Text.setText(Maps.test.get(player.getPrimaryMastery2()).name);
+            mainMastery2Text.setText(Maps.test.get(player.getPrimaryMastery3()).name);
+            mainMastery3Text.setText(Maps.test.get(player.getPrimaryMastery4()).name);
 
-        subMasteryText.setText(Maps.masteriesName.get(player.getSubMastery1()));
-        subMastery1Text.setText(Maps.masteriesName.get(player.getSubMastery2()));
+            subMasteryText.setText(Maps.test.get(player.getSubMastery1()).name);
+            subMastery1Text.setText(Maps.test.get(player.getSubMastery2()).name);
+        }else {
+            rankQText.setText("UNRANKED");
+            rank5Text.setText("UNRANKED");
+            rank3Text.setText("UNRANKED");
+
+            Picasso.get().load(R.drawable.unranked)
+                    .error(R.drawable.unranked)
+                    .placeholder(R.drawable.unranked)
+                    .into(rankQ);
+            Picasso.get().load(R.drawable.unranked)
+                    .error(R.drawable.unranked)
+                    .placeholder(R.drawable.unranked)
+                    .into(rank5);
+            Picasso.get().load(R.drawable.unranked)
+                    .error(R.drawable.unranked)
+                    .placeholder(R.drawable.unranked)
+                    .into(rank3);
+            mainMasteryText.setText(Maps.test.get(player.getPrimaryMastery1()).name+"\n"+ Html.fromHtml(Maps.test.get(player.getPrimaryMastery1()).shortDesc).toString());
+            mainMastery1Text.setText(Maps.test.get(player.getPrimaryMastery2()).name+"\n"+Html.fromHtml(Maps.test.get(player.getPrimaryMastery2()).shortDesc).toString());
+            mainMastery2Text.setText(Maps.test.get(player.getPrimaryMastery3()).name+"\n"+Html.fromHtml(Maps.test.get(player.getPrimaryMastery3()).shortDesc).toString());
+            mainMastery3Text.setText(Maps.test.get(player.getPrimaryMastery4()).name+"\n"+Html.fromHtml(Maps.test.get(player.getPrimaryMastery4()).shortDesc).toString());
+
+            subMasteryText.setText(Maps.test.get(player.getSubMastery1()).name+"\n"+Html.fromHtml(Maps.test.get(player.getSubMastery1()).shortDesc).toString());
+            subMastery1Text.setText(Maps.test.get(player.getSubMastery2()).name+"\n"+Html.fromHtml(Maps.test.get(player.getSubMastery2()).shortDesc).toString());
+        }
+
 
         perk1Text.setText(Maps.perksDesc.get(player.getPerk1()));
         perk2Text.setText(Maps.perksDesc.get(player.getPerk2()));
         perk3Text.setText(Maps.perksDesc.get(player.getPerk3()));
-
 
         if(!TextUtils.isEmpty(player.getPlayerIcon()+"")){
             Picasso.get().load("http://ddragon.leagueoflegends.com/cdn/"+Maps.VERSION+"/img/profileicon/" + player.getPlayerIcon() + ".png")
@@ -158,43 +199,43 @@ public class PlayerInfoFragment extends Fragment {
                     .into(playerIcon);
         }
         if(!TextUtils.isEmpty(player.getChampionIcon()+"")){
-            Picasso.get().load(Maps.CHAMPION_URL + Maps.VERSION +"/img/champion/" + Maps.champions.get(player.getChampionIcon()))
+            Picasso.get().load(Maps.CHAMPION_URL + Maps.VERSION +"/img/champion/" + Maps.champions.get(player.getChampionIcon()).image.full)
                     .error(R.drawable.placeholder_all)
                     .placeholder(R.drawable.placeholder_all)
                     .into(championIcon);
         }
         if(!TextUtils.isEmpty(player.getPrimaryMastery1()+"")){
-            Picasso.get().load(Maps.MASTERY_URL + Maps.masteries.get(player.getPrimaryMastery1()))
+            Picasso.get().load(Maps.MASTERY_URL + Maps.test.get(player.getPrimaryMastery1()).icon)
                     .error(R.drawable.placeholder_all)
                     .placeholder(R.drawable.placeholder_all)
                     .into(mainMastery);
         }
         if(!TextUtils.isEmpty(player.getPrimaryMastery2()+"")){
-            Picasso.get().load(Maps.MASTERY_URL + Maps.masteries.get(player.getPrimaryMastery2()))
+            Picasso.get().load(Maps.MASTERY_URL + Maps.test.get(player.getPrimaryMastery2()).icon)
                     .error(R.drawable.placeholder_all)
                     .placeholder(R.drawable.placeholder_all)
                     .into(mainMastery1);
         }
         if(!TextUtils.isEmpty(player.getPrimaryMastery3()+"")){
-            Picasso.get().load(Maps.MASTERY_URL + Maps.masteries.get(player.getPrimaryMastery3()))
+            Picasso.get().load(Maps.MASTERY_URL + Maps.test.get(player.getPrimaryMastery3()).icon)
                     .error(R.drawable.placeholder_all)
                     .placeholder(R.drawable.placeholder_all)
                     .into(mainMastery2);
         }
         if(!TextUtils.isEmpty(player.getPrimaryMastery4()+"")){
-            Picasso.get().load(Maps.MASTERY_URL + Maps.masteries.get(player.getPrimaryMastery4()))
+            Picasso.get().load(Maps.MASTERY_URL + Maps.test.get(player.getPrimaryMastery4()).icon)
                     .error(R.drawable.placeholder_all)
                     .placeholder(R.drawable.placeholder_all)
                     .into(mainMastery3);
         }
         if(!TextUtils.isEmpty(player.getSubMastery1()+"")){
-            Picasso.get().load(Maps.MASTERY_URL + Maps.masteries.get(player.getSubMastery1()))
+            Picasso.get().load(Maps.MASTERY_URL + Maps.test.get(player.getSubMastery1()).icon)
                     .error(R.drawable.placeholder_all)
                     .placeholder(R.drawable.placeholder_all)
                     .into(subMastery1);
         }
         if(!TextUtils.isEmpty(player.getSubMastery2()+"")){
-            Picasso.get().load(Maps.MASTERY_URL + Maps.masteries.get(player.getSubMastery2()))
+            Picasso.get().load(Maps.MASTERY_URL + Maps.test.get(player.getSubMastery2()).icon)
                     .error(R.drawable.placeholder_all)
                     .placeholder(R.drawable.placeholder_all)
                     .into(subMastery2);
@@ -219,8 +260,52 @@ public class PlayerInfoFragment extends Fragment {
                     .into(perk3);
         }
 
-        playerInfoFragmentVM.player.observe(this,player1 -> rank.setText(player1.getRank()));
-        playerInfoFragmentVM.player.observe(this,player1 -> wlRatio.setText(player1.getWlRatio()));
+        if(!tabletSize){
+            playerInfoFragmentVM.player.observe(this,player1 -> rank.setText(player1.getRank()));
+            playerInfoFragmentVM.player.observe(this,player1 -> wlRatio.setText(player1.getWlRatio()));
+        }else {
+            playerInfoFragmentVM.soloQ.observe(getViewLifecycleOwner(), leagueApiData -> {
+                if (leagueApiData.tier != null) {
+                    rankQText.setText(leagueApiData.tier + " " + leagueApiData.rank);//
+                    wlRatioQ.setText("W: " + leagueApiData.wins + " L: " + leagueApiData.losses);
+                    rankQLP.setText(leagueApiData.leaguePoints + " LP");
+                    if (leagueApiData.tierImageID != 0) {
+                        Picasso.get().load(leagueApiData.tierImageID)
+                                .error(R.drawable.unranked)
+                                .placeholder(R.drawable.unranked)
+                                .into(rankQ);
+                    }
+                }
+            });
+            playerInfoFragmentVM.flex5.observe(getViewLifecycleOwner(), leagueApiData -> {
+                if (leagueApiData.tier != null) {
+                    rank5Text.setText(leagueApiData.tier + " " + leagueApiData.rank);
+                    wlRatio5.setText("W: " + leagueApiData.wins + " L: " + leagueApiData.losses);
+                    rank5LP.setText(leagueApiData.leaguePoints + " LP");
+                    if (leagueApiData.tierImageID != 0) {
+                        Picasso.get().load(leagueApiData.tierImageID)
+                                .error(R.drawable.unranked)
+                                .placeholder(R.drawable.unranked)
+                                .into(rank5);
+                    }
+                }
+            });
+            playerInfoFragmentVM.flex3.observe(getViewLifecycleOwner(), leagueApiData -> {
+                if (leagueApiData.tier != null) {
+                    rank3Text.setText(leagueApiData.tier + " " + leagueApiData.rank);
+                    wlRatio3.setText("W: " + leagueApiData.wins + " L: " + leagueApiData.losses);
+                    rank3LP.setText(leagueApiData.leaguePoints + " LP");
+                    if (leagueApiData.tierImageID != 0) {
+                        Picasso.get().load(leagueApiData.tierImageID)
+                                .error(R.drawable.unranked)
+                                .placeholder(R.drawable.unranked)
+                                .into(rank3);
+                    }
+                }
+            });
+        }
+
+
         playerInfoFragmentVM.player.observe(this,player1 -> championPoints.setText("Points: " + player1.getChampionPoints()));
         playerInfoFragmentVM.player.observe(this,player1 -> championMastery.setText("Mastery: "+ player1.getChampionLvl()));
         playerInfoFragmentVM.errorMessage.observe(this, s -> Toast.makeText(getContext(),s,Toast.LENGTH_LONG).show());

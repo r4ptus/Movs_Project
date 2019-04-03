@@ -51,7 +51,7 @@ public class SplashVM extends ViewModel {
                 {
                     List<Champion> tmp = response.body().getChampions();
                     for (Champion c : tmp) {
-                        Maps.champions.put(c.key,c.image.full);
+                        Maps.champions.put(c.key,c);
                     }
                     completeChampions.setValue(true);
                     Log.d(TAG,"loaded champions");
@@ -165,8 +165,7 @@ public class SplashVM extends ViewModel {
                         Maps.masteries.put(md.id,md.icon);
                         for (Slot s: md.slots) {
                             for (Rune r: s.runes) {
-                                Maps.masteries.put(r.id,r.icon);
-                                Maps.masteriesName.put(r.id,r.name);
+                                Maps.test.put(r.id,r);
                             }
                         }
                     }

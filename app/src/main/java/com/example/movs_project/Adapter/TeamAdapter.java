@@ -50,7 +50,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.PlayerViewHold
                     .into(holder.playerIcon);
         }
         if(!TextUtils.isEmpty(dataList.get(position).getChampionIcon()+"")){
-            Picasso.get().load(Maps.CHAMPION_URL + Maps.VERSION +"/img/champion/"+ Maps.champions.get(dataList.get(position).getChampionIcon()))
+            Picasso.get().load(Maps.CHAMPION_URL + Maps.VERSION +"/img/champion/"+ Maps.champions.get(dataList.get(position).getChampionIcon()).image.full)
                     .error(R.drawable.placeholder_all)
                     .placeholder(R.drawable.placeholder_all)
                     .into(holder.championIcon);

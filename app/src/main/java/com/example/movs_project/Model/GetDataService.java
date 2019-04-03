@@ -45,4 +45,7 @@ public interface GetDataService {
     @GET()
     Call<List<String>> getVersion(@Url String s);
 
+    @GET("lol/champion-mastery/v4/champion-masteries/by-summoner/{encryptedSummonerId}")
+    Call<List<ChampionMasteryApiData>> getChampionMastarties(@Path("encryptedSummonerId") String id);
+
 }

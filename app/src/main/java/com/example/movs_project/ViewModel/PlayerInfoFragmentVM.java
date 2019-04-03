@@ -6,6 +6,7 @@ import com.example.movs_project.Model.ChampionMasteryApi.ChampionMasteryApiData;
 import com.example.movs_project.Model.ChampionScoreApi.ChampionMasteryScoreApiData;
 import com.example.movs_project.Model.GetDataService;
 import com.example.movs_project.Model.LeagueApi.LeagueApiData;
+import com.example.movs_project.Model.Maps;
 import com.example.movs_project.Model.Player;
 import com.example.movs_project.Model.RetrofitClientInstance;
 import com.example.movs_project.Model.SummonerApi.SummonerApiData;
@@ -23,6 +24,9 @@ public class PlayerInfoFragmentVM extends ViewModel {
     public MutableLiveData<Player> player = new MutableLiveData<>();
     public MutableLiveData<String> gameType = new MutableLiveData<>();
     public MutableLiveData<String> errorMessage = new MutableLiveData<>();
+    public MutableLiveData<LeagueApiData> soloQ = new MutableLiveData<>();
+    public MutableLiveData<LeagueApiData> flex5 = new MutableLiveData<>();
+    public MutableLiveData<LeagueApiData> flex3 = new MutableLiveData<>();
 
     private static String TAG = PlayerInfoFragmentVM.class.getSimpleName();
 
@@ -90,6 +94,9 @@ public class PlayerInfoFragmentVM extends ViewModel {
 
     }
     public void getRankedStats(){
+        soloQ.setValue(new LeagueApiData());
+        flex5.setValue(new LeagueApiData());
+        flex3.setValue(new LeagueApiData());
         Call<List<LeagueApiData>> call = service.getLeague(player.getValue().getId());
         call.enqueue(new Callback<List<LeagueApiData>>() {
             @Override
@@ -174,13 +181,29 @@ public class PlayerInfoFragmentVM extends ViewModel {
                             }
                             gameType.setValue(player.getValue().getGameType());
                             break;
-                            default:
-                                player.getValue().setRank("Unranked");
-                                player.getValue().setWlRatio("");
-                                gameType.setValue(player.getValue().getGameType());
-                                break;
+                        default:
+                            player.getValue().setRank("Unranked");
+                            player.getValue().setWlRatio("");
+                            gameType.setValue(player.getValue().getGameType());
+                            break;
                     }
 
+                    for (LeagueApiData l:response.body()) {
+                        switch (l.queueType){
+                            case "RANKED_SOLO_5x5":
+                                l.tierImageID = Maps.tiers.get(l.tier.toUpperCase());
+                                soloQ.setValue(l);
+                                break;
+                            case "RANKED_FLEX_SR":
+                                l.tierImageID = Maps.tiers.get(l.tier.toUpperCase());
+                                flex5.setValue(l);
+                                break;
+                            case "RANKED_FLEX_TT":
+                                l.tierImageID = Maps.tiers.get(l.tier.toUpperCase());
+                                flex3.setValue(l);
+                                break;
+                        }
+                    }
 
                     Log.d(TAG,"loaded LeagueData");
                 }

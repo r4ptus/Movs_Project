@@ -7,4 +7,9 @@
     <string name="search">Search</string>
     <string name="summonername">summonerName</string>
     <string name="bans">Bans:</string>
+    <string name="masteries"><u>Masteries</u></string>
+    <string name="title"><u>%1$s</u></string>
+    <string name="flex_3vs3"><u>Flex 3vs3</u></string>
+    <string name="flex_5vs5"><u>Flex 5vs5</u></string>
+    <string name="solo_duo"><u>Solo/Duo</u></string>
 </resources>

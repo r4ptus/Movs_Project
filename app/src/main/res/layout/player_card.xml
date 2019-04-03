@@ -18,7 +18,7 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -36,6 +36,7 @@
                 android:layout_height="match_parent"
                 android:maxLines="1"
                 android:textAlignment="center"
+                android:layout_gravity="center"
                 card_view:autoSizeMaxTextSize="100dp"
                 card_view:autoSizeMinTextSize="12dp"
                 card_view:autoSizeStepGranularity="2dp"

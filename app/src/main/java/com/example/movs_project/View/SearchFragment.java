@@ -101,9 +101,10 @@ public class SearchFragment extends Fragment implements OnBackPressedCallback {
 
         searchFragmentVM = ViewModelProviders.of(requireActivity()).get(SearchFragmentVM.class);
 
-
         Button button = view.findViewById(R.id.searchButton);
         final EditText text = view.findViewById(R.id.searchText);
+
+        final Bundle bundle = new Bundle();
 
         button.setOnClickListener(v -> {
 
@@ -119,27 +120,26 @@ public class SearchFragment extends Fragment implements OnBackPressedCallback {
 
                         searchFragmentVM.getSummonerApiData(tmp);
 
-                        final Bundle bundle = new Bundle();
-
-                        searchFragmentVM.isLiveMatch.observe(getViewLifecycleOwner(), isLiveMatch -> {
-                            switch (isLiveMatch) {
-                                case YES:
-                                    bundle.putSerializable("teamB", searchFragmentVM.teamB);
-                                    bundle.putSerializable("teamR", searchFragmentVM.teamR);
-                                    Navigation.findNavController(view).navigate(R.id.action_searchFragment_to_gameInfoFragment, bundle);
-                                    break;
-                                case NO:
-                                    bundle.putSerializable("player", searchFragmentVM.player);
-                                    Navigation.findNavController(view).navigate(R.id.action_searchFragment_to_summonerFragment, bundle);
-                                    break;
-                                case ERROR:
-                                    Toast.makeText(getContext(), searchFragmentVM.errorMessage, Toast.LENGTH_LONG).show();
-                            }
-                        });
                 }
             }
             else{
                 Toast.makeText(getContext(),"pls enter a Summonername",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        searchFragmentVM.isLiveMatch.observe(getViewLifecycleOwner(), isLiveMatch -> {
+            switch (isLiveMatch) {
+                case YES:
+                    bundle.putSerializable("teamB", searchFragmentVM.teamB);
+                    bundle.putSerializable("teamR", searchFragmentVM.teamR);
+                    Navigation.findNavController(view).navigate(R.id.action_searchFragment_to_gameInfoFragment, bundle);
+                    break;
+                case NO:
+                    bundle.putSerializable("player", searchFragmentVM.player);
+                    Navigation.findNavController(view).navigate(R.id.action_searchFragment_to_summonerFragment, bundle);
+                    break;
+                case ERROR:
+                    Toast.makeText(getContext(), searchFragmentVM.errorMessage, Toast.LENGTH_LONG).show();
             }
         });
     }

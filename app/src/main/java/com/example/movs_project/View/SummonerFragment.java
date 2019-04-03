@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.movs_project.Model.ChampionMasteryApi.ChampionMasteryApiData;
 import com.example.movs_project.Model.LeagueApi.LeagueApiData;
 import com.example.movs_project.Model.Maps;
 import com.example.movs_project.Model.Player;
@@ -93,18 +94,41 @@ public class SummonerFragment extends Fragment {
 
         Player player = (Player) getArguments().getSerializable("player");
 
+        boolean tabletSize = getResources().getBoolean(R.bool.isTablet);
+
         summonerFragmentVM = ViewModelProviders.of(requireActivity()).get(SummonerFragmentVM.class);
 
         summonerFragmentVM.setPlayer(player);
 
         summonerFragmentVM.getRankedStats();
 
+        if(tabletSize)
+            summonerFragmentVM.getChampionPoints();
+
         ImageView playerIcon = view.findViewById(R.id.summonerIcon_Summoner);
         ImageView rankQ = view.findViewById(R.id.soloQ_Summoner);
         ImageView rank5 = view.findViewById(R.id.flex5_Summoner);
         ImageView rank3 = view.findViewById(R.id.flex3_Summoner);
 
+        ImageView splash  = view.findViewById(R.id.splashChampion);
+        ImageView champion1 = view.findViewById(R.id.championIcon_SummonerInfo);
+        ImageView champion2 = view.findViewById(R.id.championIcon2_SummonerInfo);
+        ImageView champion3 = view.findViewById(R.id.championIcon3_SummonerInfo);
+
+        TextView championName = view.findViewById(R.id.championName_SummonerInfo);
+        TextView championName2 = view.findViewById(R.id.championName2_SummonerInfo);
+        TextView championName3 = view.findViewById(R.id.championName3_SummonerInfo);
+        TextView championMastery = view.findViewById(R.id.championMastery_SummonerInfo);
+        TextView championMastery2 = view.findViewById(R.id.championMastery2_SummonerInfo);
+        TextView championMastery3 = view.findViewById(R.id.championMastery3_SummonerInfo);
+        TextView championPoints = view.findViewById(R.id.championPoints_SummonerInfo);
+        TextView championPoints2 = view.findViewById(R.id.championPoints2_SummonerInfo);
+        TextView championPoints3 = view.findViewById(R.id.championPoints3_SummonerInfo);
+
         TextView name = view.findViewById(R.id.summonerName_Summoner);
+        TextView level = view.findViewById(R.id.summonerLevel_Summoner);
+        TextView score = view.findViewById(R.id.summonerChampionScore_Summoner);
+
         TextView rankQText = view.findViewById(R.id.rankQ_Summoner);
         TextView rank5Text = view.findViewById(R.id.rank5_Summoner);
         TextView rank3Text = view.findViewById(R.id.rank3_Summoner);
@@ -146,7 +170,43 @@ public class SummonerFragment extends Fragment {
                     .into(playerIcon);
         }
 
+        if(tabletSize) {
+            level.setText("Level: " + player.getLevel());
 
+            summonerFragmentVM.score.observe(getViewLifecycleOwner(), s-> score.setText("Mastery Score: "+s.toString()));
+
+            summonerFragmentVM.champion1.observe(getViewLifecycleOwner(), championMasteryApiData -> {
+                championName.setText(Maps.champions.get(championMasteryApiData.championId).name);
+                championMastery.setText("Mastery: "+championMasteryApiData.championLevel + "");
+                championPoints.setText("Points: "+championMasteryApiData.championPoints + "");
+                Picasso.get().load(Maps.CHAMPION_URL + Maps.VERSION + "/img/champion/" + Maps.champions.get(championMasteryApiData.championId).image.full)
+                        .error(R.drawable.placeholder)
+                        .placeholder(R.drawable.placeholder)
+                        .into(champion1);
+                Picasso.get().load("http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" + Maps.champions.get(championMasteryApiData.championId).name + "_0.jpg")
+                        .error(R.drawable.placeholder)
+                        .placeholder(R.drawable.placeholder)
+                        .into(splash);
+            });
+            summonerFragmentVM.champion2.observe(getViewLifecycleOwner(), championMasteryApiData -> {
+                championName2.setText(Maps.champions.get(championMasteryApiData.championId).name);
+                championMastery2.setText("Mastery: "+championMasteryApiData.championLevel + "");
+                championPoints2.setText("Points: "+championMasteryApiData.championPoints + "");
+                Picasso.get().load(Maps.CHAMPION_URL + Maps.VERSION + "/img/champion/" + Maps.champions.get(championMasteryApiData.championId).image.full)
+                        .error(R.drawable.placeholder)
+                        .placeholder(R.drawable.placeholder)
+                        .into(champion2);
+            });
+            summonerFragmentVM.champion3.observe(getViewLifecycleOwner(), championMasteryApiData -> {
+                championName3.setText(Maps.champions.get(championMasteryApiData.championId).name);
+                championMastery3.setText("Mastery: "+championMasteryApiData.championLevel + "");
+                championPoints3.setText("Points: "+championMasteryApiData.championPoints + "");
+                Picasso.get().load(Maps.CHAMPION_URL + Maps.VERSION + "/img/champion/" + Maps.champions.get(championMasteryApiData.championId).image.full)
+                        .error(R.drawable.placeholder)
+                        .placeholder(R.drawable.placeholder)
+                        .into(champion3);
+            });
+        }
 
         summonerFragmentVM.soloQ.observe(getViewLifecycleOwner(), leagueApiData -> {
                     if(leagueApiData.tier!=null) {

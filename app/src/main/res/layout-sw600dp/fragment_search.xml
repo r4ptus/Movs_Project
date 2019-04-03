@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/search_gradiant"
+    tools:context=".View.SearchFragment">
+
+    <EditText
+        android:id="@+id/searchText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="401dp"
+        android:layout_marginBottom="108dp"
+        android:backgroundTint="@color/gold"
+        android:ems="10"
+        android:hint="@string/summoner_name"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textColor="@color/gold"
+        android:textColorHint="@color/gold"
+        android:textCursorDrawable="@color/gold"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/searchButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="133dp"
+        android:layout_height="54dp"
+        android:layout_marginBottom="414dp"
+        android:background="@drawable/button_bg"
+        android:text="@string/search"
+        android:textColor="@color/gold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchText" />
+</androidx.constraintlayout.widget.ConstraintLayout>

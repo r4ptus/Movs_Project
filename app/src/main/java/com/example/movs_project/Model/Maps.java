@@ -1,5 +1,7 @@
 package com.example.movs_project.Model;
 
+import com.example.movs_project.Model.ChampionsApi.Champion;
+import com.example.movs_project.Model.MasteryApi.Rune;
 import com.example.movs_project.R;
 
 import java.util.HashMap;
@@ -9,10 +11,10 @@ public class Maps {
     public static HashMap<Integer,String> perks = new HashMap<>() ;
     public static HashMap<Integer,String> perksDesc = new HashMap<>() ;
     public static HashMap<Integer,String> spells = new HashMap<>() ;
-    public static HashMap<Integer,String> champions = new HashMap<>() ;
+    public static HashMap<Integer, Champion> champions = new HashMap<>() ;
     public static HashMap<Integer,String> masteries = new HashMap<>();
-    public static HashMap<Integer,String> masteriesName = new HashMap<>();
     public static HashMap<String,Integer> tiers = new HashMap<>();
+    public static HashMap<Integer, Rune> test = new HashMap<>();
     public static String PERKS_URL ="http://ddragon.leagueoflegends.com/cdn/img/perk-images/StatMods/";
     public static String SPELLS_URL = "http://ddragon.leagueoflegends.com/cdn/";//9.6.1/img/spell/";
     public static String CHAMPION_URL = "http://ddragon.leagueoflegends.com/cdn/";//9.6.1/img/champion/";

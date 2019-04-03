@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".View.SummonerFragment"
+    android:weightSum="10">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="3.5">
+
+        <ImageView
+            android:id="@+id/splashChampion"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            tools:src="@tools:sample/avatars" />
+
+        <com.github.abdularis.civ.CircleImageView
+            android:id="@+id/summonerIcon_Summoner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="0dp"
+            android:adjustViewBounds="true"
+            android:layout_centerHorizontal="true"
+            app:strokeWidth="2dp"
+            app:strokeColor="@color/gold"
+            tools:src="@tools:sample/avatars" />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight=".5"
+        android:weightSum="3">
+        <TextView
+            android:id="@+id/summonerLevel_Summoner"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textColor="@color/gold"
+            app:autoSizeMaxTextSize="100dp"
+            app:autoSizeMinTextSize="8dp"
+            app:autoSizeStepGranularity="2dp"
+            app:autoSizeTextType="uniform"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/summonerName_Summoner"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textColor="@color/gold"
+            app:autoSizeMaxTextSize="100dp"
+            app:autoSizeMinTextSize="8dp"
+            app:autoSizeStepGranularity="2dp"
+            app:autoSizeTextType="uniform"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/summonerChampionScore_Summoner"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textColor="@color/gold"
+            app:autoSizeMaxTextSize="100dp"
+            app:autoSizeMinTextSize="8dp"
+            app:autoSizeStepGranularity="2dp"
+            app:autoSizeTextType="uniform"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="3"
+        android:layout_marginBottom="5dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.9"
+            android:orientation="vertical"
+            android:weightSum="10"
+            android:layout_marginTop="5dp">
+
+            <com.github.abdularis.civ.CircleImageView
+                android:id="@+id/championIcon2_SummonerInfo"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="6"
+                app:strokeColor="@color/gold"
+                app:strokeWidth="5dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:weightSum="3"
+                android:layout_weight="4"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:id="@+id/championName2_SummonerInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/gold"
+                    app:autoSizeMaxTextSize="100dp"
+                    app:autoSizeMinTextSize="8dp"
+                    app:autoSizeStepGranularity="2dp"
+                    app:autoSizeTextType="uniform" />
+
+                <TextView
+                    android:id="@+id/championMastery2_SummonerInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/gold"
+                    app:autoSizeMaxTextSize="100dp"
+                    app:autoSizeMinTextSize="8dp"
+                    app:autoSizeStepGranularity="2dp"
+                    app:autoSizeTextType="uniform" />
+
+                <TextView
+                    android:id="@+id/championPoints2_SummonerInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/gold"
+                    app:autoSizeMaxTextSize="100dp"
+                    app:autoSizeMinTextSize="8dp"
+                    app:autoSizeStepGranularity="2dp"
+                    app:autoSizeTextType="uniform" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.2"
+            android:orientation="vertical"
+            android:weightSum="10">
+
+            <com.github.abdularis.civ.CircleImageView
+                android:id="@+id/championIcon_SummonerInfo"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="6"
+                app:strokeColor="@color/gold"
+                app:strokeWidth="5dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:weightSum="3"
+                android:layout_weight="4"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:id="@+id/championName_SummonerInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/gold"
+                    app:autoSizeMaxTextSize="100dp"
+                    app:autoSizeMinTextSize="8dp"
+                    app:autoSizeStepGranularity="2dp"
+                    app:autoSizeTextType="uniform" />
+
+                <TextView
+                    android:id="@+id/championMastery_SummonerInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/gold"
+                    app:autoSizeMaxTextSize="100dp"
+                    app:autoSizeMinTextSize="8dp"
+                    app:autoSizeStepGranularity="2dp"
+                    app:autoSizeTextType="uniform" />
+
+                <TextView
+                    android:id="@+id/championPoints_SummonerInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/gold"
+                    app:autoSizeMaxTextSize="100dp"
+                    app:autoSizeMinTextSize="8dp"
+                    app:autoSizeStepGranularity="2dp"
+                    app:autoSizeTextType="uniform" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.9"
+            android:orientation="vertical"
+            android:weightSum="10"
+            android:layout_marginTop="5dp">
+
+            <com.github.abdularis.civ.CircleImageView
+                android:id="@+id/championIcon3_SummonerInfo"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="6"
+                app:strokeColor="@color/gold"
+                app:strokeWidth="5dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:weightSum="3"
+                android:layout_weight="4"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:id="@+id/championName3_SummonerInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/gold"
+                    app:autoSizeMaxTextSize="100dp"
+                    app:autoSizeMinTextSize="8dp"
+                    app:autoSizeStepGranularity="2dp"
+                    app:autoSizeTextType="uniform" />
+
+                <TextView
+                    android:id="@+id/championMastery3_SummonerInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/gold"
+                    app:autoSizeMaxTextSize="100dp"
+                    app:autoSizeMinTextSize="8dp"
+                    app:autoSizeStepGranularity="2dp"
+                    app:autoSizeTextType="uniform" />
+
+                <TextView
+                    android:id="@+id/championPoints3_SummonerInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/gold"
+                    app:autoSizeMaxTextSize="100dp"
+                    app:autoSizeMinTextSize="8dp"
+                    app:autoSizeStepGranularity="2dp"
+                    app:autoSizeTextType="uniform" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/rankLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:elevation="2dp"
+            app:cardCornerRadius="6dp">
+
+            <LinearLayout
+                android:id="@+id/soloQ"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:weightSum="100"
+                android:background="@drawable/card_gradiant">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="10"
+                    android:text="@string/solo_duo"
+                    android:textAlignment="center"
+                    android:textColor="@color/gold"
+                    android:textStyle="bold"
+                    app:autoSizeMaxTextSize="100dp"
+                    app:autoSizeMinTextSize="8dp"
+                    app:autoSizeStepGranularity="2dp"
+                    app:autoSizeTextType="uniform"/>
+
+                <ImageView
+                    android:id="@+id/soloQ_Summoner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="55"
+                    android:layout_gravity="center"
+                    tools:src="@tools:sample/avatars" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="35"
+                    android:orientation="vertical"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/rankQ_Summoner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        app:autoSizeMaxTextSize="100dp"
+                        app:autoSizeMinTextSize="8dp"
+                        app:autoSizeStepGranularity="2dp"
+                        app:autoSizeTextType="uniform"/>
+
+                    <TextView
+                        android:id="@+id/rankQ_LP"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        app:autoSizeMaxTextSize="100dp"
+                        app:autoSizeMinTextSize="8dp"
+                        app:autoSizeStepGranularity="2dp"
+                        app:autoSizeTextType="uniform"/>
+
+                    <TextView
+                        android:id="@+id/wlRatioQ"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        app:autoSizeMaxTextSize="100dp"
+                        app:autoSizeMinTextSize="8dp"
+                        app:autoSizeStepGranularity="2dp"
+                        app:autoSizeTextType="uniform"/>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:elevation="2dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginBottom="5dp"
+            app:cardCornerRadius="6dp">
+
+            <LinearLayout
+                android:id="@+id/flex"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/card_gradiant"
+                android:orientation="vertical"
+                android:weightSum="100">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="10"
+                    android:text="@string/flex_5vs5"
+                    android:textAlignment="center"
+                    android:textColor="@color/gold"
+                    android:textStyle="bold"
+                    app:autoSizeMaxTextSize="100dp"
+                    app:autoSizeMinTextSize="8dp"
+                    app:autoSizeStepGranularity="2dp"
+                    app:autoSizeTextType="uniform"/>
+
+                <ImageView
+                    android:id="@+id/flex5_Summoner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="55"
+                    android:layout_gravity="center"
+                    tools:src="@tools:sample/avatars" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="35"
+                    android:orientation="vertical"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/rank5_Summoner"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        app:autoSizeMaxTextSize="100dp"
+                        app:autoSizeMinTextSize="8dp"
+                        app:autoSizeStepGranularity="2dp"
+                        app:autoSizeTextType="uniform"/>
+
+                    <TextView
+                        android:id="@+id/rank5_LP"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        app:autoSizeMaxTextSize="100dp"
+                        app:autoSizeMinTextSize="8dp"
+                        app:autoSizeStepGranularity="2dp"
+                        app:autoSizeTextType="uniform"/>
+
+                    <TextView
+                        android:id="@+id/wlRatio5"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        app:autoSizeMaxTextSize="100dp"
+                        app:autoSizeMinTextSize="8dp"
+                        app:autoSizeStepGranularity="2dp"
+                        app:autoSizeTextType="uniform"/>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:elevation="2dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginBottom="5dp"
+            app:cardCornerRadius="6dp">
+
+            <LinearLayout
+                android:id="@+id/flex3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/card_gradiant"
+                android:orientation="vertical"
+                android:weightSum="100">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="10"
+                    android:text="@string/flex_3vs3"
+                    android:textAlignment="center"
+                    android:textColor="@color/gold"
+                    android:textStyle="bold"
+                    app:autoSizeMaxTextSize="100dp"
+                    app:autoSizeMinTextSize="8dp"
+                    app:autoSizeStepGranularity="2dp"
+                    app:autoSizeTextType="uniform"/>
+
+                <ImageView
+                    android:id="@+id/flex3_Summoner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="55"
+                    android:layout_gravity="center"
+                    tools:src="@tools:sample/avatars" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="35"
+                    android:orientation="vertical"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/rank3_Summoner"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        app:autoSizeMaxTextSize="100dp"
+                        app:autoSizeMinTextSize="8dp"
+                        app:autoSizeStepGranularity="2dp"
+                        app:autoSizeTextType="uniform"/>
+
+                    <TextView
+                        android:id="@+id/rank3_LP"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        app:autoSizeMaxTextSize="100dp"
+                        app:autoSizeMinTextSize="8dp"
+                        app:autoSizeStepGranularity="2dp"
+                        app:autoSizeTextType="uniform"/>
+
+                    <TextView
+                        android:id="@+id/wlRatio3"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        app:autoSizeMaxTextSize="100dp"
+                        app:autoSizeMinTextSize="8dp"
+                        app:autoSizeStepGranularity="2dp"
+                        app:autoSizeTextType="uniform"/>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+</LinearLayout>

@@ -91,11 +91,13 @@ public class SearchFragmentVM extends ViewModel {
 
                     isLiveMatch.setValue(IsLiveMatch.YES);
                     Log.d(TAG,"Yes is Livematch");
+                    isLiveMatch.setValue(IsLiveMatch.UNDEFINED);
                 }
                 else{
-                    player = new Player(summonerApiData.id,summonerApiData.name,summonerApiData.profileIconId);
+                    player = new Player(summonerApiData.id,summonerApiData.name,summonerApiData.profileIconId,summonerApiData.summonerLevel);
                     isLiveMatch.setValue(IsLiveMatch.NO);
                     Log.d(TAG,"No Livematch");
+                    isLiveMatch.setValue(IsLiveMatch.UNDEFINED);
                 }
             }
 
