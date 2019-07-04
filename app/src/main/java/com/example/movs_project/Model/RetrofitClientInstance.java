@@ -1,6 +1,8 @@
 package com.example.movs_project.Model;
 
 import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -19,17 +21,13 @@ public class RetrofitClientInstance {
 
     public static Retrofit getRetrofitInstanceLOL() {
         if (retrofit == null) {
-
             HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
             OkHttpClient client = new OkHttpClient.Builder()
                     .addInterceptor(interceptor)
-                    .addInterceptor(new Interceptor() {
-                        @Override
-                        public Response intercept(Chain chain) throws IOException {
-                            Request request = chain.request().newBuilder().addHeader("X-Riot-Token", KEY).build();
-                            return chain.proceed(request);
-                        }
+                    .addInterceptor(chain -> {
+                        Request request = chain.request().newBuilder().addHeader("X-Riot-Token", KEY).build();
+                        return chain.proceed(request);
                     }).build();
 
 

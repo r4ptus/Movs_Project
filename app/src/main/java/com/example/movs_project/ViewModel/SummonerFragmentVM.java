@@ -50,6 +50,7 @@ public class SummonerFragmentVM extends ViewModel {
         call.enqueue(new Callback<List<LeagueApiData>>() {
             @Override
             public void onResponse(Call<List<LeagueApiData>> call, Response<List<LeagueApiData>> response) {
+                Maps.CALLS++;
                 if(response.isSuccessful()){
                     for (LeagueApiData l:response.body()) {
                         switch (l.queueType){
@@ -87,6 +88,7 @@ public class SummonerFragmentVM extends ViewModel {
         call.enqueue(new Callback<List<ChampionMasteryApiData>>() {
             @Override
             public void onResponse(Call<List<ChampionMasteryApiData>> call, Response<List<ChampionMasteryApiData>> response) {
+                Maps.CALLS++;
                 if(response.isSuccessful()) {
                     champion1.setValue(response.body().get(0));
                     champion2.setValue(response.body().get(1));
@@ -109,6 +111,7 @@ public class SummonerFragmentVM extends ViewModel {
         call.enqueue(new Callback<ChampionMasteryScoreApiData>() {
             @Override
             public void onResponse(Call<ChampionMasteryScoreApiData> call, Response<ChampionMasteryScoreApiData> response) {
+                Maps.CALLS++;
                 if(response.isSuccessful()){
                     score.setValue(response.body().championScore);
                 }

@@ -74,6 +74,7 @@ public class PlayerInfoFragmentVM extends ViewModel {
         call.enqueue(new Callback<ChampionMasteryApiData>() {
             @Override
             public void onResponse(Call<ChampionMasteryApiData> call, Response<ChampionMasteryApiData> response) {
+                Maps.CALLS++;
                 if(response.isSuccessful()){
                     Player tmp = player.getValue();
                     tmp.setChampionPoints((long)response.body().championPoints);
@@ -101,6 +102,7 @@ public class PlayerInfoFragmentVM extends ViewModel {
         call.enqueue(new Callback<List<LeagueApiData>>() {
             @Override
             public void onResponse(Call<List<LeagueApiData>> call, Response<List<LeagueApiData>> response) {
+                Maps.CALLS++;
                 if(response.isSuccessful()){
                     QueueType queueType = QueueType.fromInteger(player.getValue().getQueueType());
                     switch (queueType){

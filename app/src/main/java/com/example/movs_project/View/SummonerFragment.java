@@ -102,8 +102,10 @@ public class SummonerFragment extends Fragment {
 
         summonerFragmentVM.getRankedStats();
 
-        if(tabletSize)
+        if(tabletSize) {
             summonerFragmentVM.getChampionPoints();
+            summonerFragmentVM.getMasteryScore();
+        }
 
         ImageView playerIcon = view.findViewById(R.id.summonerIcon_Summoner);
         ImageView rankQ = view.findViewById(R.id.soloQ_Summoner);

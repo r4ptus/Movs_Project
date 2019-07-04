@@ -108,6 +108,7 @@ public class SearchFragment extends Fragment implements OnBackPressedCallback {
 
         button.setOnClickListener(v -> {
 
+            //MainActivity.start();
             // mis-clicking prevention, using threshold of 1000 ms
             if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
                 return;

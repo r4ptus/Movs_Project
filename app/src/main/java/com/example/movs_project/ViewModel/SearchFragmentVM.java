@@ -3,6 +3,7 @@ package com.example.movs_project.ViewModel;
 import android.util.Log;
 
 import com.example.movs_project.Model.GetDataService;
+import com.example.movs_project.Model.Maps;
 import com.example.movs_project.Model.SpectatorApi.Participant;
 import com.example.movs_project.Model.Player;
 import com.example.movs_project.Model.RetrofitClientInstance;
@@ -55,6 +56,7 @@ public class SearchFragmentVM extends ViewModel {
         call.enqueue(new Callback<SummonerApiData>() {
             @Override
             public void onResponse(Call<SummonerApiData> call, Response<SummonerApiData> response) {
+                Maps.CALLS++;
                 if(response.isSuccessful()){
                     summonerApiData = response.body();
                     Log.d(TAG,"start Spectator");
@@ -63,16 +65,13 @@ public class SearchFragmentVM extends ViewModel {
                 else {
                     errorMessage = response.message();
                     isLiveMatch.setValue(IsLiveMatch.ERROR);
-
                 }
-
             }
 
             @Override
             public void onFailure(Call<SummonerApiData> call, Throwable t) {
                 errorMessage = t.getMessage();
                 isLiveMatch.setValue(IsLiveMatch.ERROR);
-
             }
         });
     }
@@ -82,9 +81,8 @@ public class SearchFragmentVM extends ViewModel {
         call.enqueue(new Callback<SpectatorApiData>() {
             @Override
             public void onResponse(Call<SpectatorApiData> call, Response<SpectatorApiData> response) {
-
+                Maps.CALLS++;
                 if(response.isSuccessful()){
-
                     Log.d(TAG,"initStart");
 
                     initTeams(response.body());

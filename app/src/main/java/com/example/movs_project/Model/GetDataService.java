@@ -30,7 +30,7 @@ public interface GetDataService {
     @GET("lol/spectator/v4/active-games/by-summoner/{encryptedSummonerId}")
     Call<SpectatorApiData> getSpectator(@Path("encryptedSummonerId") String id);
 
-    @GET("lol/league/v4/positions/by-summoner/{encryptedSummonerId}")
+    @GET("lol/league/v4/entries/by-summoner/{encryptedSummonerId}")
     Call<List<LeagueApiData>> getLeague(@Path("encryptedSummonerId") String id);
 
     @GET()

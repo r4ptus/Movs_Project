@@ -1,9 +1,12 @@
 package com.example.movs_project.Model;
 
+import android.text.format.Time;
+
 import com.example.movs_project.Model.ChampionsApi.Champion;
 import com.example.movs_project.Model.MasteryApi.Rune;
 import com.example.movs_project.R;
 
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 
 public class Maps {
@@ -21,6 +24,7 @@ public class Maps {
     public static String MASTERY_URL = "http://ddragon.leagueoflegends.com/cdn/img/";
     public static String BASE_URL = "http://ddragon.leagueoflegends.com/cdn/";//9.6.1/data/en_US/";
     public static String VERSION;
+    public static int CALLS;
 
     public Maps(){
         initMaps();
