@@ -3,13 +3,11 @@ package com.example.movs_project.ViewModel;
 import android.util.Log;
 
 import com.example.movs_project.Model.ChampionMasteryApi.ChampionMasteryApiData;
-import com.example.movs_project.Model.ChampionScoreApi.ChampionMasteryScoreApiData;
 import com.example.movs_project.Model.GetDataService;
 import com.example.movs_project.Model.LeagueApi.LeagueApiData;
 import com.example.movs_project.Model.Maps;
 import com.example.movs_project.Model.Player;
 import com.example.movs_project.Model.RetrofitClientInstance;
-import com.example.movs_project.Model.SummonerApi.SummonerApiData;
 
 import java.util.List;
 

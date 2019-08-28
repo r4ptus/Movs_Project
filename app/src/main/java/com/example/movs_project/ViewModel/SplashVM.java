@@ -36,7 +36,7 @@ public class SplashVM extends ViewModel {
 
     GetDataService service = RetrofitClientInstance.getRetrofitInstanceLOL().create(GetDataService.class);
 
-    SplashVM(){
+    public SplashVM(){
         counter.setValue(0);
     }
 

@@ -1,8 +1,5 @@
 package com.example.movs_project.Model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import java.io.Serializable;
 
 public class Player implements Serializable {
